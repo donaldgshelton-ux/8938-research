@@ -3,859 +3,1120 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Reddit Intelligence</title>
+<title>Form 8938 Delinquent Filing — Research Memorandum · Altura</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,300;1,6..72,400;1,6..72,500&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
-:root {
-  --bg:        #0a0a0f;
-  --surface:   #13131a;
-  --surface2:  #1a1a24;
-  --border:    #ffffff10;
-  --accent:    #ff6b35;
-  --accent2:   #7c5cfc;
-  --gold:      #f0b429;
-  --text:      #e8e8f0;
-  --muted:     #6b6b80;
-  --success:   #22c55e;
-  --danger:    #ef4444;
-  --radius:    10px;
-  --panel:     340px;
-}
+  :root{
+    --paper:#f6f2e9;
+    --paper-deep:#efe9da;
+    --ink:#1d1813;
+    --ink-soft:#4a4138;
+    --ink-faint:#8a7f70;
+    --rule:#d8cfbb;
+    --oxblood:#8a2b25;
+    --oxblood-soft:#a8443b;
+    --slate:#3c4a4e;
+    --zero:#3f6b4a;
+    --maxw:760px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;
+    font-size:19px;
+    line-height:1.62;
+    font-weight:400;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:1;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+    mix-blend-mode:multiply;
+  }
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px;position:relative;z-index:2;}
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
+  /* ---- masthead ---- */
+  .masthead{padding:54px 0 0;}
+  .mast-line{
+    font-family:"JetBrains Mono",monospace;font-size:11px;font-weight:500;
+    letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);
+    display:flex;flex-wrap:wrap;gap:6px 18px;align-items:baseline;
+    border-bottom:1px solid var(--rule);padding-bottom:14px;
+  }
+  .mast-line .brand{color:var(--oxblood);font-weight:700;}
+  .mast-line .spacer{flex:1;}
+  .kicker{
+    font-family:"JetBrains Mono",monospace;font-size:11px;font-weight:500;
+    letter-spacing:.2em;text-transform:uppercase;color:var(--ink-faint);
+    margin:30px 0 10px;
+  }
+  h1.title{
+    font-size:clamp(40px,8vw,68px);line-height:1.02;font-weight:400;
+    letter-spacing:-.015em;margin:0 0 18px;
+  }
+  h1.title em{font-style:italic;color:var(--oxblood);}
+  .dek{
+    font-size:21px;line-height:1.5;color:var(--ink-soft);font-weight:300;
+    max-width:62ch;margin:0 0 30px;
+  }
+  .prepared{
+    display:flex;flex-wrap:wrap;gap:26px 44px;align-items:flex-end;
+    border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);
+    padding:20px 0;margin-bottom:14px;
+  }
+  .prepared .blk{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.06em;line-height:1.7;}
+  .prepared .lbl{color:var(--ink-faint);text-transform:uppercase;letter-spacing:.16em;display:block;margin-bottom:3px;}
+  .prepared .val{color:var(--ink);font-size:13px;}
+  .prepared .val.name{font-family:"Newsreader",serif;font-size:18px;letter-spacing:0;}
+  .links{display:flex;gap:18px;flex-wrap:wrap;margin:0 0 8px;}
+  .links a{
+    font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.06em;
+    color:var(--oxblood);text-decoration:none;border-bottom:1px solid transparent;padding-bottom:1px;
+  }
+  .links a:hover{border-bottom-color:var(--oxblood);}
 
-body {
-  font-family: 'DM Sans', sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  height: 100dvh;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-}
+  /* ---- contents ---- */
+  nav.toc{
+    margin:40px 0 8px;padding:22px 26px;background:var(--paper-deep);
+    border:1px solid var(--rule);
+  }
+  nav.toc .tl{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:12px;}
+  nav.toc ol{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:6px 22px;}
+  nav.toc a{
+    font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:.02em;
+    color:var(--ink-soft);text-decoration:none;
+  }
+  nav.toc a:hover{color:var(--oxblood);}
+  nav.toc .num{color:var(--oxblood-soft);font-weight:700;margin-right:5px;}
 
-/* ── HEADER ── */
-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 12px 20px;
-  border-bottom: 1px solid var(--border);
-  background: var(--surface);
-  flex-shrink: 0;
-  gap: 12px;
-}
-
-.logo {
-  font-family: 'Syne', sans-serif;
-  font-weight: 800;
-  font-size: 16px;
-  letter-spacing: -0.5px;
-  color: var(--accent);
-  white-space: nowrap;
-}
-
-.logo span { color: var(--muted); font-weight: 400; }
-
-.stats-bar {
-  display: flex;
-  gap: 16px;
-  font-family: 'DM Mono', monospace;
-  font-size: 11px;
-  color: var(--muted);
-}
-
-.stats-bar b { color: var(--accent); }
-
-/* ── DOMAIN TABS ── */
-.tabs {
-  display: flex;
-  gap: 4px;
-  padding: 10px 16px;
-  border-bottom: 1px solid var(--border);
-  background: var(--surface);
-  overflow-x: auto;
-  flex-shrink: 0;
-  scrollbar-width: none;
-}
-
-.tabs::-webkit-scrollbar { display: none; }
-
-.tab {
-  padding: 6px 14px;
-  border-radius: 20px;
-  font-size: 12px;
-  font-weight: 500;
-  cursor: pointer;
-  border: 1px solid var(--border);
-  color: var(--muted);
-  white-space: nowrap;
-  transition: all 0.2s;
-  background: transparent;
-}
-
-.tab:hover { color: var(--text); border-color: #ffffff30; }
-.tab.active { background: var(--accent); color: white; border-color: var(--accent); }
-.tab.gallery-tab.active { background: var(--accent2); border-color: var(--accent2); }
-
-/* ── MAIN LAYOUT ── */
-.main {
-  display: flex;
-  flex: 1;
-  overflow: hidden;
-}
-
-/* ── POST LIST ── */
-.post-list {
-  width: 100%;
-  overflow-y: auto;
-  padding: 12px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  transition: width 0.3s ease;
-}
-
-.main.panel-open .post-list {
-  width: calc(100% - var(--panel));
-}
-
-.post-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 14px;
-  cursor: pointer;
-  transition: all 0.15s;
-  position: relative;
-}
-
-.post-card:hover { border-color: #ffffff25; background: var(--surface2); }
-.post-card.selected { border-color: var(--accent); background: var(--surface2); }
-.post-card.kept { border-left: 3px solid var(--success); }
-.post-card.skipped { opacity: 0.4; }
-
-.post-meta {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 7px;
-  flex-wrap: wrap;
-}
-
-.sub-tag {
-  font-family: 'DM Mono', monospace;
-  font-size: 10px;
-  font-weight: 500;
-  color: var(--accent2);
-  background: #7c5cfc15;
-  padding: 2px 7px;
-  border-radius: 4px;
-}
-
-.domain-tag {
-  font-size: 10px;
-  color: var(--muted);
-  background: var(--surface2);
-  padding: 2px 7px;
-  border-radius: 4px;
-}
-
-.type-tag {
-  font-size: 10px;
-  padding: 2px 6px;
-  border-radius: 4px;
-  font-family: 'DM Mono', monospace;
-}
-
-.type-image  { color: #f0b429; background: #f0b42915; }
-.type-video  { color: #22c55e; background: #22c55e15; }
-.type-gallery{ color: #7c5cfc; background: #7c5cfc15; }
-.type-text   { color: #6b6b80; background: #6b6b8015; }
-.type-link   { color: #6b6b80; background: #6b6b8015; }
-
-.fresh-current { color: var(--success); }
-.fresh-aging   { color: var(--gold); }
-.fresh-stale   { color: var(--muted); }
-
-.post-title {
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 1.4;
-  margin-bottom: 8px;
-  color: var(--text);
-}
-
-.post-scores {
-  display: flex;
-  gap: 12px;
-  font-family: 'DM Mono', monospace;
-  font-size: 11px;
-  color: var(--muted);
-  align-items: center;
-}
-
-.cred-score {
-  font-weight: 500;
-  padding: 2px 6px;
-  border-radius: 4px;
-  font-size: 11px;
-}
-
-.cred-high   { color: var(--success); background: #22c55e15; }
-.cred-med    { color: var(--gold);    background: #f0b42915; }
-.cred-low    { color: var(--muted);   background: #6b6b8015; }
-
-.post-actions {
-  display: flex;
-  gap: 6px;
-  margin-top: 10px;
-}
-
-.btn {
-  padding: 5px 12px;
-  border-radius: 6px;
-  font-size: 12px;
-  font-weight: 500;
-  cursor: pointer;
-  border: 1px solid var(--border);
-  transition: all 0.15s;
-  background: transparent;
-  color: var(--text);
-  font-family: 'DM Sans', sans-serif;
-}
-
-.btn:hover { background: var(--surface2); }
-.btn-research { border-color: var(--accent); color: var(--accent); }
-.btn-research:hover { background: var(--accent); color: white; }
-.btn-keep    { border-color: var(--success); color: var(--success); }
-.btn-keep:hover { background: var(--success); color: white; }
-.btn-skip    { border-color: var(--danger); color: var(--danger); }
-.btn-skip:hover { background: var(--danger); color: white; }
-.btn-open    { color: var(--muted); }
-
-/* ── RESEARCH PANEL ── */
-.research-panel {
-  width: var(--panel);
-  min-width: var(--panel);
-  border-left: 1px solid var(--border);
-  background: var(--surface);
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  transform: translateX(100%);
-  transition: transform 0.3s ease;
-  position: absolute;
-  right: 0;
-  top: 0;
-  bottom: 0;
-}
-
-.main.panel-open .research-panel {
-  transform: translateX(0);
-  position: relative;
-}
-
-.panel-header {
-  padding: 14px 16px;
-  border-bottom: 1px solid var(--border);
-  flex-shrink: 0;
-}
-
-.panel-post-title {
-  font-size: 13px;
-  font-weight: 500;
-  line-height: 1.4;
-  margin-bottom: 6px;
-  color: var(--text);
-}
-
-.panel-post-meta {
-  display: flex;
-  gap: 6px;
-  flex-wrap: wrap;
-}
-
-.panel-close {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  background: var(--surface2);
-  border: 1px solid var(--border);
-  color: var(--muted);
-  width: 26px;
-  height: 26px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 14px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.chat-history {
-  flex: 1;
-  overflow-y: auto;
-  padding: 14px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.chat-msg {
-  max-width: 90%;
-  padding: 10px 13px;
-  border-radius: 10px;
-  font-size: 13px;
-  line-height: 1.5;
-}
-
-.chat-msg.user {
-  background: var(--accent2);
-  color: white;
-  align-self: flex-end;
-  border-bottom-right-radius: 3px;
-}
-
-.chat-msg.assistant {
-  background: var(--surface2);
-  color: var(--text);
-  align-self: flex-start;
-  border-bottom-left-radius: 3px;
-  border: 1px solid var(--border);
-  white-space: pre-wrap;
-}
-
-.chat-msg.thinking {
-  background: var(--surface2);
-  color: var(--muted);
-  align-self: flex-start;
-  font-style: italic;
-  font-size: 12px;
-  animation: pulse 1.5s infinite;
-}
-
-@keyframes pulse { 0%,100%{opacity:.5} 50%{opacity:1} }
-
-.chat-input-area {
-  padding: 12px;
-  border-top: 1px solid var(--border);
-  display: flex;
-  gap: 8px;
-  flex-shrink: 0;
-}
-
-.chat-input {
-  flex: 1;
-  background: var(--surface2);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 9px 12px;
-  color: var(--text);
-  font-size: 13px;
-  font-family: 'DM Sans', sans-serif;
-  resize: none;
-  outline: none;
-  max-height: 100px;
-  min-height: 38px;
-}
-
-.chat-input:focus { border-color: var(--accent2); }
-
-.send-btn {
-  background: var(--accent);
-  border: none;
-  border-radius: 8px;
-  color: white;
-  padding: 0 14px;
-  cursor: pointer;
-  font-size: 16px;
-  flex-shrink: 0;
-  transition: opacity 0.15s;
-}
-
-.send-btn:hover { opacity: 0.85; }
-.send-btn:disabled { opacity: 0.4; cursor: not-allowed; }
-
-/* ── GALLERY VIEW ── */
-.gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-  gap: 10px;
-  padding: 14px;
-  overflow-y: auto;
-  flex: 1;
-}
-
-.gallery-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  overflow: hidden;
-  cursor: pointer;
-  transition: all 0.15s;
-  position: relative;
-}
-
-.gallery-card:hover { border-color: #ffffff25; transform: scale(1.02); }
-.gallery-card.selected { border-color: var(--accent2); }
-
-.gallery-thumb {
-  width: 100%;
-  aspect-ratio: 4/3;
-  object-fit: cover;
-  background: var(--surface2);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--muted);
-  font-size: 24px;
-}
-
-.gallery-thumb img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.gallery-info {
-  padding: 8px 10px;
-}
-
-.gallery-title {
-  font-size: 11px;
-  color: var(--text);
-  line-height: 1.3;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  margin-bottom: 5px;
-}
-
-.gallery-actions {
-  display: flex;
-  gap: 5px;
-}
-
-.gallery-btn {
-  flex: 1;
-  padding: 4px;
-  border-radius: 5px;
-  font-size: 11px;
-  cursor: pointer;
-  border: 1px solid var(--border);
-  background: transparent;
-  color: var(--muted);
-  transition: all 0.15s;
-}
-
-.gallery-btn.keep:hover  { background: var(--success); color: white; border-color: var(--success); }
-.gallery-btn.skip:hover  { background: var(--danger);  color: white; border-color: var(--danger); }
-.gallery-btn.research:hover { background: var(--accent); color: white; border-color: var(--accent); }
-
-/* ── EMPTY STATE ── */
-.empty {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  flex: 1;
-  color: var(--muted);
-  gap: 10px;
-  font-size: 14px;
-}
-
-.empty .icon { font-size: 40px; }
-
-/* ── MOBILE ── */
-@media (max-width: 680px) {
-  :root { --panel: 100vw; }
-
-  .main.panel-open .post-list { display: none; }
-
-  .main.panel-open .research-panel {
-    position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
-    z-index: 100;
-    width: 100%;
-    transform: none;
+  /* ---- sections ---- */
+  section{padding:46px 0 4px;border-top:1px solid var(--rule);margin-top:42px;}
+  section:first-of-type{border-top:none;margin-top:0;}
+  .sec-no{
+    font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.22em;
+    text-transform:uppercase;color:var(--oxblood);margin-bottom:14px;display:block;
+  }
+  h2{font-size:clamp(28px,5vw,40px);line-height:1.08;font-weight:400;letter-spacing:-.01em;margin:0 0 22px;}
+  h2 em{font-style:italic;color:var(--oxblood);}
+  h3{font-size:23px;font-weight:500;letter-spacing:-.005em;margin:36px 0 12px;}
+  h4{font-size:18px;font-weight:600;margin:26px 0 8px;font-family:"JetBrains Mono",monospace;letter-spacing:.02em;}
+  p{margin:0 0 18px;}
+  p.lead{font-size:21px;line-height:1.55;color:var(--ink);font-weight:300;}
+  strong{font-weight:600;}
+  em{font-style:italic;}
+  a.ref{color:var(--oxblood);text-decoration:none;border-bottom:1px solid var(--rule);}
+  a.ref:hover{border-bottom-color:var(--oxblood);}
+  .partlabel{
+    font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:.24em;
+    text-transform:uppercase;color:var(--paper);background:var(--ink);
+    display:inline-block;padding:7px 16px;margin-bottom:4px;
   }
 
-  .stats-bar { display: none; }
-  .logo { font-size: 14px; }
-
-  .gallery-grid {
-    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  /* pull quote */
+  blockquote{
+    margin:26px 0;padding:4px 0 4px 26px;border-left:3px solid var(--oxblood);
+    font-style:italic;color:var(--ink-soft);font-size:20px;line-height:1.5;
   }
+  blockquote .who{display:block;font-style:normal;font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.08em;color:var(--ink-faint);margin-top:10px;}
 
-  .post-card { padding: 12px; }
-  .post-title { font-size: 13px; }
-}
+  /* stat strip */
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule);margin:28px 0;}
+  .stats .s{background:var(--paper);padding:20px 14px;text-align:center;}
+  .stats .n{font-size:34px;line-height:1;font-weight:400;letter-spacing:-.02em;color:var(--ink);display:block;}
+  .stats .n.ox{color:var(--oxblood);}
+  .stats .n.zero{color:var(--zero);}
+  .stats .k{font-family:"JetBrains Mono",monospace;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);margin-top:8px;display:block;line-height:1.4;}
+  @media(max-width:600px){.stats{grid-template-columns:repeat(2,1fr);}}
 
-/* ── SCROLLBAR ── */
-::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+  /* absence box */
+  .absence{background:var(--ink);color:var(--paper);padding:34px 30px;margin:34px 0;}
+  .absence .h{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--oxblood-soft);margin-bottom:16px;}
+  .absence p{color:#e9e2d4;font-size:18px;}
+  .absence ul{margin:14px 0 0;padding:0;list-style:none;}
+  .absence li{padding:10px 0 10px 26px;position:relative;border-top:1px solid #38302a;color:#e9e2d4;font-size:17px;line-height:1.5;}
+  .absence li::before{content:"—";position:absolute;left:0;color:var(--oxblood-soft);}
+  .absence li:first-child{border-top:none;}
+
+  /* tables */
+  .tbl-wrap{overflow-x:auto;margin:26px 0;border:1px solid var(--rule);}
+  table{border-collapse:collapse;width:100%;font-size:14.5px;line-height:1.45;background:var(--paper);}
+  th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--rule);vertical-align:top;}
+  th{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);background:var(--paper-deep);font-weight:500;}
+  td strong{color:var(--ink);}
+  tr:last-child td{border-bottom:none;}
+  .pen-zero{color:var(--zero);font-weight:600;}
+  .pen-watch{color:var(--oxblood);font-weight:600;}
+
+  /* thread cards */
+  .thread{border:1px solid var(--rule);padding:20px 22px;margin:18px 0;background:var(--paper);}
+  .thread .tt{font-size:19px;font-weight:500;line-height:1.25;margin:0 0 8px;}
+  .thread .tt a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--oxblood);}
+  .thread .tt a:hover{color:var(--oxblood);}
+  .thread .meta{font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.06em;color:var(--ink-faint);text-transform:uppercase;margin-bottom:12px;}
+  .thread .meta .fp{color:var(--oxblood);}
+  .thread p{font-size:16px;color:var(--ink-soft);margin:0 0 10px;}
+  .thread .voice{font-style:italic;font-size:16px;color:var(--ink);border-left:2px solid var(--rule);padding-left:14px;margin:0;}
+  .thread .voice .u{display:block;font-style:normal;font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.06em;color:var(--ink-faint);margin-top:6px;}
+
+  /* callout */
+  .callout{background:var(--paper-deep);border:1px solid var(--rule);border-left:3px solid var(--slate);padding:22px 24px;margin:28px 0;}
+  .callout .h{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--slate);margin-bottom:10px;}
+  .callout p:last-child{margin-bottom:0;}
+
+  .move{background:var(--oxblood);color:var(--paper);padding:30px 28px;margin:30px 0;}
+  .move .h{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#f4c9c4;margin-bottom:12px;}
+  .move .big{font-size:25px;line-height:1.3;font-weight:400;margin:0;}
+  .move .big em{font-style:italic;}
+
+  .disclaimer{font-size:15px;color:var(--ink-faint);font-style:italic;line-height:1.55;border-top:1px solid var(--rule);padding-top:18px;margin-top:30px;}
+
+  /* methodology */
+  .meth dt{font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:.04em;color:var(--oxblood);margin-top:18px;font-weight:500;}
+  .meth dd{margin:6px 0 0;font-size:16px;color:var(--ink-soft);line-height:1.5;}
+  .srclist{columns:2;column-gap:32px;font-size:13px;line-height:1.5;margin:18px 0;}
+  .srclist a{color:var(--oxblood);text-decoration:none;display:block;margin-bottom:8px;break-inside:avoid;border-bottom:1px solid transparent;}
+  .srclist a:hover{border-bottom-color:var(--oxblood);}
+  @media(max-width:600px){.srclist{columns:1;}}
+
+  footer{margin:60px 0 50px;padding-top:24px;border-top:2px solid var(--ink);}
+  footer .fl{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.1em;color:var(--ink-faint);text-transform:uppercase;line-height:1.8;}
+  footer .fl .b{color:var(--oxblood);font-weight:700;}
+
+  /* load animation */
+  .fade{opacity:0;transform:translateY(14px);animation:rise .7s cubic-bezier(.2,.7,.2,1) forwards;}
+  @keyframes rise{to{opacity:1;transform:none;}}
+  .masthead .mast-line{animation-delay:.05s;}
+  h1.title{animation-delay:.12s;}
+  .dek{animation-delay:.2s;}
+  .prepared{animation-delay:.28s;}
+  .links{animation-delay:.34s;}
+  nav.toc{animation-delay:.4s;}
+
+  /* verdict + invite */
+  .verdict-head{font-size:clamp(26px,5vw,36px);font-weight:400;letter-spacing:-.01em;margin:48px 0 20px;padding-top:30px;border-top:2px solid var(--ink);}
+  .verdict-head em{font-style:italic;color:var(--oxblood);}
+  .invite{background:var(--paper-deep);border:1px solid var(--rule);border-left:3px solid var(--oxblood);padding:24px 26px;margin:28px 0;}
+  .invite .h{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--oxblood);margin-bottom:12px;}
+  .invite p{font-size:17px;}
+  .invite p:last-child{margin-bottom:0;}
+
+  /* verbatim reference report */
+  .verbatim{font-size:16px;color:var(--ink-soft);margin-top:10px;}
+  .verbatim > h1:first-child{font-size:13px;font-family:"JetBrains Mono",monospace;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-faint);font-weight:500;line-height:1.5;margin:0 0 2px;}
+  .verbatim h2{font-size:24px;font-weight:500;letter-spacing:-.005em;color:var(--ink);border-top:1px solid var(--rule);padding-top:26px;margin:34px 0 14px;}
+  .verbatim > h2:nth-of-type(1){border-top:none;padding-top:0;margin-top:4px;}
+  .verbatim h3{font-size:19px;font-weight:600;color:var(--ink);margin:26px 0 8px;}
+  .verbatim h4{font-size:12.5px;font-family:"JetBrains Mono",monospace;letter-spacing:.05em;text-transform:uppercase;color:var(--oxblood);margin:22px 0 6px;}
+  .verbatim p{margin:0 0 14px;line-height:1.55;}
+  .verbatim ul,.verbatim ol{margin:0 0 16px;padding-left:22px;}
+  .verbatim li{margin:0 0 7px;line-height:1.5;}
+  .verbatim strong{color:var(--ink);font-weight:600;}
+  .verbatim em{font-style:italic;}
+  .verbatim a{color:var(--oxblood);text-decoration:none;border-bottom:1px solid var(--rule);word-break:break-word;}
+  .verbatim a:hover{border-bottom-color:var(--oxblood);}
+  .verbatim hr{border:none;border-top:1px solid var(--rule);margin:30px 0;}
+  .verbatim blockquote{margin:18px 0;padding:2px 0 2px 20px;border-left:3px solid var(--slate);font-style:italic;color:var(--ink-soft);font-size:17px;line-height:1.5;}
+  .verbatim table{font-size:13px;}
 </style>
 </head>
 <body>
+<div class="wrap">
 
-<header>
-  <div class="logo">RI<span>P</span></div>
-  <div class="stats-bar" id="statsBar">Loading...</div>
-</header>
-
-<div class="tabs" id="tabs"></div>
-
-<div class="main" id="main">
-  <div class="post-list" id="postList">
-    <div class="empty"><div class="icon">⟳</div>Loading posts...</div>
-  </div>
-  <div class="research-panel" id="researchPanel">
-    <div class="panel-header" id="panelHeader">
-      <button class="panel-close" onclick="closePanel()">✕</button>
-      <div class="panel-post-title" id="panelTitle"></div>
-      <div class="panel-post-meta" id="panelMeta"></div>
+  <header class="masthead">
+    <div class="mast-line fade">
+      <span class="brand">Altura · Decision Architecture</span>
+      <span class="spacer"></span>
+      <span>MEMO-2026-06-01-8938</span>
+      <span>June 2026 · Fort Myers, Florida</span>
     </div>
-    <div class="chat-history" id="chatHistory"></div>
-    <div class="chat-input-area">
-      <textarea class="chat-input" id="chatInput"
-        placeholder="Ask about this post..."
-        rows="1"
-        onkeydown="handleKey(event)"
-        oninput="autoResize(this)"></textarea>
-      <button class="send-btn" id="sendBtn" onclick="sendMessage()">▶</button>
+
+    <div class="kicker fade" style="animation-delay:.1s">Research Memorandum · Phase Zero · Companion to the FBAR memo</div>
+
+    <h1 class="title fade">Form 8938 &mdash; <em>What Actually Happens</em></h1>
+
+    <p class="dek fade">Your CPA is hesitating on whether to file at all. The reason is one number: the $10,000 failure-to-file penalty. This memo asks the only question that matters &mdash; does that penalty ever actually land on someone in your exact situation? &mdash; and answers it two ways: what people who have lived it report, and what the IRS machinery actually does when the paper arrives.</p>
+
+    <div class="prepared fade">
+      <div class="blk"><span class="lbl">Prepared For</span><span class="val">Chuck · Personal Inquiry</span></div>
+      <div class="blk"><span class="lbl">Prepared By</span><span class="val name">Donald G. Shelton</span><span class="val" style="color:var(--ink-faint)">Decision Architect · Altura</span></div>
+      <div class="blk"><span class="lbl">Contact</span><span class="val">donald@altura-life.com</span></div>
     </div>
-  </div>
+
+    <div class="links fade">
+      <a href="https://donaldgshelton-ux.github.io/fbar-research/">↗ fbar-research (companion memo)</a>
+      <a href="https://donaldgshelton-ux.github.io/rsh-proposal/">↗ rsh-proposal</a>
+    </div>
+  </header>
+
+  <nav class="toc fade">
+    <div class="tl">Contents</div>
+    <ol>
+      <li><a href="#framing"><span class="num">00</span>Framing</a></li>
+      <li><a href="#fork"><span class="num">01</span>The Fork</a></li>
+      <li><a href="#method"><span class="num">02</span>Method</a></li>
+      <li><a href="#part1"><span class="num">I</span>Lived Experience &amp; Verdict</a></li>
+      <li><a href="#part2"><span class="num">II</span>Reference Report</a></li>
+      <li><a href="#methodology"><span class="num">03</span>Methodology</a></li>
+    </ol>
+  </nav>
+
+  <!-- 00 FRAMING -->
+  <section id="framing">
+    <span class="sec-no">00 · Framing</span>
+    <h2>The Question Behind <em>the Question</em></h2>
+    <p class="lead">Chuck &mdash; the FBAR memo answered the broad fear. This one answers the sharper, narrower question your CPA actually raised: whether to file the missed Form 8938 at all, or leave it alone.</p>
+    <p>Let me name the CPA's hesitation precisely, because once it's named it gets a lot smaller. The CPA is <em>not</em> worried about an audit of your returns. Not worried about back taxes &mdash; there are none; all your income was reported and all your tax was paid. The hesitation comes down to a single line item in the statute: the <strong>$10,000 failure-to-file penalty under IRC §6038D(d)</strong> that attaches to a late or missing 8938. That penalty &mdash; and only that penalty &mdash; is the thing in the picture that could theoretically cost you. When a CPA says "maybe think about whether to file," what they mean is "filing puts the missed form in front of the IRS, and the IRS has a $10,000 hammer it is technically allowed to swing."</p>
+    <p>That is a real statute. It is also the entire fear. So the question this memo takes seriously is the only one that should drive the decision: <strong>does that $10,000 penalty actually get assessed against people in your exact situation</strong> &mdash; an information-return-only miss, all income reported, all tax paid, self-correcting voluntarily, with no audit or investigation open?</p>
+    <blockquote>The diagnostic eye: the ability to stand outside a system, see where the friction &mdash; or the opportunity &mdash; lives, and name it precisely.</blockquote>
+  </section>
+
+  <!-- 01 FORK -->
+  <section id="fork">
+    <span class="sec-no">01 · The Fork</span>
+    <h2>One Question Decides <em>Everything</em></h2>
+    <p>Before any of the evidence matters, one fact sorts you into the right procedure: <strong>did you underreport taxable income, or did you only fail to attach the information return?</strong></p>
+    <p>This is the distinction that the panicked posts in the Reddit corpus repeatedly miss. Form 8938 reports the <em>existence</em> of foreign financial assets. It is not where income is reported &mdash; interest and dividends live on Schedule B, gains on Schedule D. It is entirely ordinary to have foreign accounts above the threshold, all the income from them properly reported, all the tax paid, <em>and</em> have simply never attached the 8938. If that is your situation, you are not in the under-reported-income world at all.</p>
+    <p>That single fact moves you off the path everyone fears (Streamlined, with its 5% penalty) and onto the path built for exactly this case: the <strong>Delinquent International Information Return Submission Procedures (DIIRSP)</strong> &mdash; an amended 1040-X with the missed 8938 attached and a reasonable-cause statement. Streamlined's 5%-of-highest-balance penalty is badly mispriced for a pure information miss with no underpayment, and practitioners in the Reddit corpus say so directly.</p>
+
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Your situation</th><th>Procedure that fits</th><th>Penalty exposure</th></tr></thead>
+        <tbody>
+          <tr><td><strong>All foreign income reported, all tax paid, 8938 missed</strong> — your fact pattern</td><td>DIIRSP — amended 1040-X + 8938 + reasonable-cause statement</td><td class="pen-zero">$0 if reasonable cause accepted</td></tr>
+          <tr><td>Some foreign income <em>not</em> reported, back tax owed</td><td>Streamlined — SFOP (non-resident) or SDOP (domestic)</td><td>$0 (SFOP) / 5% of highest balance (SDOP)</td></tr>
+          <tr><td>Willful concealment</td><td>Voluntary Disclosure Practice (VDP)</td><td>Significant; mitigates criminal exposure</td></tr>
+          <tr><td>Do nothing</td><td>—</td><td class="pen-watch">Statute of limitations frozen open indefinitely</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>You are in row one. Everything below is about row one.</p>
+  </section>
+
+  <!-- 02 METHOD -->
+  <section id="method">
+    <span class="sec-no">02 · Method</span>
+    <h2>Two Bodies of <em>Evidence</em></h2>
+    <p>A worried question deserves more than a single source, so this memo triangulates. The first body is <strong>lived experience</strong>: a systematic scrape of the communities where US-person tax compliance is actually discussed &mdash; what real people in this situation report happening to them. The second is <strong>institutional mechanics</strong>: a sourced walk through what the IRS machinery actually does when an amended return and a delinquent 8938 arrive, drawn from the Internal Revenue Manual, TIGTA oversight reports, and the National Taxpayer Advocate.</p>
+    <p>Lived experience tells you the <em>outcomes</em>. The institutional record tells you <em>why</em> those outcomes are what they are. They agree.</p>
+
+    <div class="stats">
+      <div class="s"><span class="n">470</span><span class="k">Posts Captured</span></div>
+      <div class="s"><span class="n ox">220</span><span class="k">8938-Specific</span></div>
+      <div class="s"><span class="n">213</span><span class="k">With Comment Trees</span></div>
+      <div class="s"><span class="n">13 yrs</span><span class="k">History Covered</span></div>
+    </div>
+  </section>
+
+  <!-- PART I -->
+  <section id="part1">
+    <span class="partlabel">Part I</span>
+    <h2>The Lived <em>Experience</em></h2>
+    <p class="lead">What 220 people who missed Form 8938 actually report &mdash; from discovery, through the panic, to how it resolved.</p>
+
+    <h3>The pattern is the same one the FBAR memo found</h3>
+    <p>The arc repeats almost word-for-word across thirteen years: discovery (a new CPA asks the question, a bank requests a W-9, a thread surfaces the form) → panic ("the penalties are severe," "how screwed am I?") → research, where experienced voices identify the correct procedural path → resolution, mostly silent, as posters disappear once they have a plan that works. The dramatic numbers &mdash; $10,000 per form, $50,000 continuation &mdash; appear constantly. <em>As quoted statutory ceilings. Almost never as something that happened to the person writing.</em></p>
+
+    <div class="absence">
+      <div class="h">The Absence That Speaks</div>
+      <p>What is <em>not</em> in 220 substantive Form 8938 threads, with their full comment trees, spanning thirteen years and the exact fact pattern you're in:</p>
+      <ul>
+        <li>Zero first-person accounts of the $10,000 8938 penalty actually assessed and <em>sticking</em> against someone who reported all income, owed no tax, and self-corrected voluntarily</li>
+        <li>Zero accounts of a delinquent-8938 filing triggering an audit of otherwise-clean returns</li>
+        <li>Zero "the IRS came after me" stories from the information-return-only population</li>
+        <li>The $10K-per-form figure appears constantly &mdash; always as the statutory maximum people are afraid of, never as a lived bill they paid</li>
+      </ul>
+    </div>
+
+    <p>The most direct statement on this comes from a practitioner who is a repeat presence in these threads, weighing exactly the trade-off your CPA is weighing:</p>
+    <blockquote>I've never seen an 8938 penalty in all my years of practicing.<span class="who">u/nunab1994, tax practitioner · r/USExpatTaxes</span></blockquote>
+
+    <p>The same professional voice is candid about the one real difference between the two forms &mdash; an FBAR-only miss is the cleanest case of all, while a missed 8938 runs through the reasonable-cause door discussed below &mdash; and still lands in the same place. On facts like yours:</p>
+    <blockquote>You have a pretty good case that you weren't hiding anything and didn't know.<span class="who">u/AdvingtonTax · r/USExpatTaxes</span></blockquote>
+
+    <h3>Why the lived experience looks like this &mdash; the machinery underneath</h3>
+    <p>The Reddit pattern isn't luck or survivorship bias alone. The institutional research explains <em>why</em> a clean self-correction lands softly, and two facts specific to the foreign-account case do most of the work:</p>
+    <p><strong>The income-tax side and the foreign-account side are legally walled off.</strong> Income tax exams are Title 26; FBAR inquiries are Title 31. Under the Internal Revenue Manual, information gathered in a Title 26 examination <em>cannot</em> be used in a Title 31 FBAR inquiry without a related-statute memorandum approved up the management chain. A routine look at your 1040-X cannot quietly become an FBAR enforcement action.</p>
+    <p><strong>The processing posture is clerical, not adversarial.</strong> Oversight bodies have criticized the IRS for the <em>opposite</em> of aggression here &mdash; for under-reviewing amended returns before issuing refunds. The documented institutional problem is too little scrutiny of amended filings, not too much. (The general mechanics &mdash; how amended returns are screened, scored, and audited &mdash; are laid out in full in <a class="ref" href="#part2">Part II</a>.)</p>
+
+    <div class="stats">
+      <div class="s"><span class="n zero">$0</span><span class="k">Modal Outcome, Clean DIIRSP Case</span></div>
+      <div class="s"><span class="n ox">0</span><span class="k">Documented 8938 Penalties On This Fact Pattern</span></div>
+      <div class="s"><span class="n">26</span><span class="k">Threads On DIIRSP / Reasonable Cause</span></div>
+      <div class="s"><span class="n ox">&ldquo;Never&rdquo;</span><span class="k">A Practitioner&rsquo;s Lifetime 8938 Penalty Count</span></div>
+    </div>
+
+    <h3>The reasonable-cause hook &mdash; and where it points</h3>
+    <p>Everything above turns on one document. When you file the missed 8938 under DIIRSP, the <strong>reasonable-cause statement</strong> &mdash; your explanation for why the form was late &mdash; is what does the work. If the IRS accepts it, the penalty is $0. So the real question was never whether the penalty <em>can</em> be assessed; it's whether your reasonable cause is strong.</p>
+    <p>On that, the Reddit corpus is consistent: the most reliably accepted basis is <strong>reliance on a tax professional who got it wrong</strong> &mdash; "ineffective tax advice," in the threads' shorthand. A preparer handled the returns and didn't raise the 8938. One commenter summarized the practitioner's view directly:</p>
+    <blockquote>In practice, claiming ineffective advice is generally accepted as reasonable cause.<span class="who">u/JediMasterReddit · r/USExpatTaxes</span></blockquote>
+    <p>The weaker version &mdash; "I didn't know the form existed," with no advisor to point to &mdash; is the one the Reddit corpus describes as harder to get accepted. The difference between the two is simply whether there was a professional whose job it was to catch it.</p>
+    <p>That difference is the whole point for you, Chuck: your returns were prepared, and the form was missed. You are in the <em>strong</em> version of the reasonable-cause case, not the weak one. The single most-accepted basis the IRS recognizes is the one your facts already supply &mdash; which is the same thing I've been telling you.</p>
+    <p>The part worth saying plainly: that statement points back at whoever prepared the returns in the years the form was missed. The Reddit corpus notes this cuts two ways &mdash; a preparer who missed a foreign-asset form can face preparer penalties for the error, which is why this work is billed at a premium, and why a preparer can be quietly reluctant to have a client file a statement that names the miss. I won't claim that's why your CPA is leaning toward leaving it alone. But it is a real structural incentive, and it deserves to be in plain view when you weigh the advice.</p>
+    <div class="callout">
+      <div class="h">On not wanting to throw your CPA under the bus</div>
+      <p>The instinct is decent, and it's worth reframing rather than dismissing. The IRS built this off-ramp on purpose. Citing reliance on professional advice is the routine, expected basis for these filings &mdash; not an accusation, not a complaint to a licensing board, not a report to anyone. In practice it is one sentence: you relied on a professional, and the item was missed.</p>
+      <p>Declining to use it leaves your own statute of limitations open (see <a class="ref" href="#part2">Part II</a>) while shielding your CPA from very little. It's a generous instinct aimed at a risk that is mostly yours to carry, not theirs.</p>
+    </div>
+
+    <h3>The one honest caveat &mdash; and exactly what the worst case looks like</h3>
+    <p>Here is where the lived experience and the institutional record refuse to be glib, and where the precise answer to your CPA's worry lives. The IRS's own DIIRSP page contains a line worth reading slowly:</p>
+    <blockquote>During the processing of the delinquent information return, penalties may be assessed without considering the attached reasonable cause statement.<span class="who">IRS · Delinquent International Information Return Submission Procedures</span></blockquote>
+    <p>Read plainly: for a delinquent 8938, the system <em>can</em> auto-assess the $10,000 penalty as a processing step &mdash; before any human reads your reasonable-cause statement. If that happens, you receive a <strong>notice</strong>, and you <strong>respond</strong> with the reasonable-cause statement to have it abated. That is a penalty-assessment-and-response cycle. It is <em>not</em> an audit, not back taxes, not a seizure.</p>
+    <p>This is the realistic worst case, named completely: <strong>a letter you answer.</strong> Note also what the Reddit corpus shows about that cycle &mdash; even the auto-assessment-then-abate sequence does not appear as a story that <em>ended badly</em> for someone in your fact pattern. The thing your CPA is right to flag (the penalty exists on paper, and the statement isn't guaranteed to be read on the first pass) and the thing the evidence shows (it doesn't land and stick on clean, voluntary, no-tax-owed facts) are both true at once. Naming the gap between them is the whole job.</p>
+
+    <h3>Threads to read first</h3>
+    <p>The highest-signal accounts for your exact path. The first is the cleanest case study in the Reddit corpus; the rest map the no-tax-owed terrain.</p>
+
+    <div class="thread">
+      <div class="tt"><a href="https://www.reddit.com/r/USExpatTaxes/comments/187liwv/missing_filing_8938_conflicting_information_from/">Missing filing 8938, conflicting information from tax preparers</a></div>
+      <div class="meta">r/USExpatTaxes · 9 pts · 25 comments · 2023-11</div>
+      <p>Dual citizen abroad, timely returns and FBARs for years, missed only the 8938 for two years when the balance crossed the threshold. Straightforward income, all reported. Two prep firms gave conflicting advice; one (TFX) recommended amending under DIIRSP with a reasonable-cause letter "since I am just reporting info."</p>
+      <p class="voice">Since you paid your taxes on time, I doubt IRS would be interested in pursuing any penalties for you.<span class="u">— top commenter</span></p>
+    </div>
+
+    <div class="thread">
+      <div class="tt"><a href="https://www.reddit.com/r/USExpatTaxes/comments/1r6y3ig/missed_fbar_for_2_years_need_advice_on_best_path/">Missed FBAR for 2 years, need advice on best path forward</a></div>
+      <div class="meta">r/USExpatTaxes · 18 pts · 18 comments · <span class="fp">first-person</span> · 2026-02</div>
+      <p>Resident alien who <em>always</em> filed the 8938 and reported capital gains, but missed FBAR two years, not realizing they were separate obligations. Asks whether delinquent procedures (no penalty) fit and whether the consistent 8938 filing strengthens the non-willful case.</p>
+      <p class="voice">1. Yes 2. Yes 3. Hell no. Don't get wrapped up with any fear-mongering lawyers. You could do it yourself.<span class="u">— u/caroline0409</span></p>
+    </div>
+
+    <div class="thread">
+      <div class="tt"><a href="https://www.reddit.com/r/USExpatTaxes/comments/1pvwd22/fatca_submission_failure_to_submit_for_two/">FATCA submission — failure to submit for two consecutive years</a></div>
+      <div class="meta">r/USExpatTaxes · 6 pts · 24 comments · 2025-12</div>
+      <p>US tax resident whose preparer filed FBAR but dropped the 8938 two years running; no assets sold, no concealment. Asks whether DIIRSP with a reasonable-cause statement fits rather than Streamlined.</p>
+      <p class="voice">You have a pretty good case that you weren't hiding anything and didn't know.<span class="u">— u/AdvingtonTax</span></p>
+    </div>
+
+    <div class="thread">
+      <div class="tt"><a href="https://www.reddit.com/r/USExpatTaxes/comments/1qde14k/in_an_fbar8938_mess_and_unsure_of_the_best_path/">In an FBAR/8938 mess and unsure of the best path</a></div>
+      <div class="meta">r/USExpatTaxes · 8 pts · 21 comments · 2026-01</div>
+      <p>First-year US person with a tangle of UK accounts the accountant didn't put on the 8938. The pro voices steer toward DIIRSP given the small amounts and the advisor relationship, and note that ineffective tax advice is generally accepted as reasonable cause.</p>
+      <p class="voice">Given the small amount and given you have an advisor, DIIRSP should be the path forward… you have solid reasonable cause to add to the statement.<span class="u">— u/AdvingtonTax</span></p>
+    </div>
+
+    <div class="thread">
+      <div class="tt"><a href="https://www.reddit.com/r/taxhelp/comments/1b0wz2l/filing_late_fbars_and_8938s_help_please/">Filing late FBARs and 8938s — HELP please!</a></div>
+      <div class="meta">r/taxhelp · 4 pts · 39 comments · 2024-02</div>
+      <p>Couple whose retired preparer never filed FBARs or 8938s for six years; foreign pensions and accounts, but <em>no</em> interest or income from them. They explicitly don't want Streamlined's 5% penalty for forms they didn't know they needed &mdash; the textbook DIIRSP candidate, asking the same question Chuck is asking.</p>
+    </div>
+
+    <h3 class="verdict-head">What This Means <em>for You</em></h3>
+    <p>Your CPA's caution is legitimate <em>on paper</em>. The $10,000 penalty under §6038D(d) is real, and the IRS can technically assess it during processing before reading a reasonable-cause statement. A careful advisor names that. So does this memo.</p>
+    <p>But sized against the evidence, here is what that caution is weighed against:</p>
+
+    <div class="move">
+      <div class="h">The Conservative Read</div>
+      <p class="big">Across thirteen years of lived experience in the communities where this is actually discussed, and against the IRS's own published processing data, there is <em>no evidence</em> of the 8938 penalty landing and sticking on your fact pattern: all income reported, no tax owed, self-correcting, no audit open. A practitioner with years in this work says he has never seen it.</p>
+    </div>
+
+    <p>Three things follow, and you can hold all of them at once:</p>
+    <p><strong>One &mdash; the realistic worst case is a letter, not a loss.</strong> If the system auto-assesses the penalty, you respond with the reasonable-cause statement and it abates. That is the documented ceiling for this fact pattern. Not an audit. Not back taxes. Not a seizure.</p>
+    <p><strong>Two &mdash; "do nothing" is not actually the safe choice.</strong> An unfiled 8938 keeps your statute of limitations frozen open with no expiration. Filing it starts the clock toward closure. The instinct to sit quiet is the option that never ends.</p>
+    <p><strong>Three &mdash; the path is cheap and procedurally ordinary.</strong> An amended 1040-X with the 8938 attached and a reasonable-cause statement, filed under DIIRSP. The Reddit corpus shows this resolving at zero or trivial cost for non-willful, no-tax-owed cases. The expensive part of 8938 non-compliance, when it shows up at all, tends to be the preparer's fee &mdash; not the IRS.</p>
+
+    <div class="invite">
+      <div class="h">If you want to see the gears turn</div>
+      <p>That is the verdict, and you don't need to read further to act on it. But if you want every last grimy detail of how the IRS actually handles one of these &mdash; the intake systems, the transcription failures, the audit-selection math &mdash; <a class="ref" href="#part2">Part II reproduces the full institutional research in its entirety</a>. It's the deep end of the pool, included so nothing is hidden from you.</p>
+      <p>If you read only one piece of it, read the enforcement section. When the IRS's own FATCA campaign flagged 405 taxpayers holding roughly $6.2 trillion &mdash; 164 of them referred for examination, averaging $1.3 <em>billion</em> each &mdash; it actually examined twelve, and assessed $80,000 in penalties total. Failure-to-file penalties aren't even part of that campaign's strategy. If enforcement is that gentle on suspected billionaires, the picture for a good-faith filer correcting a clerical miss comes into focus.</p>
+    </div>
+
+    <p class="disclaimer">None of this is legal advice. It is a pattern-match across 220 substantive threads of lived experience, cross-checked against the IRS's own published procedure, the Internal Revenue Manual, TIGTA oversight, and the National Taxpayer Advocate. The one fact that must be confirmed before acting is the fork in Section 01 &mdash; that all foreign income was in fact reported and no tax is owed. That determination, and the final filing decision, belong to you and your CPA. If any fact is non-trivial &mdash; unreported income, willful exposure, or a notice already received &mdash; the analysis changes and a tax attorney's review becomes important.</p>
+  </section>
+
+  <!-- PART II -->
+  <section id="part2">
+    <span class="partlabel">Part II · Reference</span>
+    <h2>How the IRS Actually <em>Handles It</em></h2>
+    <p class="lead">Optional reading. This is the full institutional research reproduced verbatim &mdash; the complete sourced account of what happens inside the IRS when an amended return and a delinquent Form 8938 arrive, from intake systems to the FATCA enforcement record. Part I gave you the verdict; this is the evidence beneath it, in full, with every citation intact.</p>
+    <div class="verbatim">
+<h1>Research Memorandum: IRS Processing of Amended Tax Returns</h1>
+<h2>What Actually Happens — A Sourced, Concrete Account for Taxpayers and Advisors</h2>
+<p><strong>Prepared for:</strong> Donald Shelton and Client<br />
+<strong>Subject:</strong> IRS Processing Pathway for Form 1040-X and Related Amended Returns<br />
+<strong>Note on FBAR and Form 8938:</strong> Special considerations for foreign account reporters are addressed throughout and in a dedicated section.</p>
+<hr />
+<h2>Executive Summary</h2>
+<ul>
+<li>
+<p><strong>Filing an amended return does not automatically trigger an audit.</strong> The IRS itself states this explicitly: "filing an amended return does not affect the selection process of the original return." Amended returns go through their own separate screening, but the overall audit rate on amended individual returns referred to examination has historically been approximately <strong>3% of the subset routed for closer review</strong> — and only about 40–58% of those selected are actually audited. For the average filer, the real-world audit risk from a straightforward 1040-X is very low.</p>
+</li>
+<li>
+<p><strong>Processing is primarily manual, not adversarial.</strong> Unlike original returns, amended returns do not pass through the full battery of automated systemic checks. A tax examiner or customer service representative (CSR) reviews them for math, completeness, and documentation — then inputs the adjustment into IDRS (the IRS's core account system). Most unaudited amended returns claiming refunds were processed in <strong>two to four weeks</strong> at the median in recent non-backlog years; the IRS's published estimate is currently <strong>8–12 weeks</strong>, with up to 16 weeks in some cases.</p>
+</li>
+<li>
+<p><strong>The NTA reports the reality is slower.</strong> The National Taxpayer Advocate's January 2026 report to Congress found the IRS took an average of <strong>over 5 months</strong> to process 3.7 million individual amended returns in FY 2025, and over 13 months for business amended returns. If your amended return is selected for audit, the median processing time historically stretches to <strong>20–35+ weeks</strong>, and can reach 100 weeks in extreme cases.</p>
+</li>
+<li>
+<p><strong>For FBAR and Form 8938 filers, the stakes are different — but so is the process.</strong> FBAR is a Bank Secrecy Act filing, not a tax return; it lives in a separate legal universe (Title 31, not Title 26). An amended income tax return and an amended FBAR follow completely separate tracks, with separate statutes of limitations and separate examination authorities. Importantly, the two cannot be automatically cross-used by IRS agents without specific management approval.</p>
+</li>
+</ul>
+<hr />
+<h2>Section 1: Intake — What Happens When the IRS Receives an Amended Return</h2>
+<h3>Paper-Filed Amended Returns</h3>
+<p>When a paper Form 1040-X arrives at an IRS campus, it enters a largely manual processing path that has been repeatedly criticized by TIGTA and the National Taxpayer Advocate for lacking the systemic verification tools applied to original returns.</p>
+<p>The physical return is received at one of the IRS's processing campuses (Ogden, Kansas City, Austin) and routed to either the <strong>Submission Processing (SP) function</strong> or the <strong>Accounts Management (AM) function</strong>, depending on the complexity and content of the claim. SP handles the simpler, more mechanical routing; AM handles substantive account adjustments and claims. Per <a href="https://www.tigta.gov/sites/default/files/reports/2024-11/201940042fr.pdf" target="_blank" rel="noopener">TIGTA Report 2019-40-042</a>, an IRS tax examiner or CSR then reviews the return manually.</p>
+<p>Key systems engaged at intake:</p>
+<div class="tbl-wrap"><table>
+<thead>
+<tr>
+<th>System</th>
+<th>Function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>IDRS</strong> (Integrated Data Retrieval System)</td>
+<td>Core IRS account database; virtually all IRS personnel use IDRS command codes (CC) to research and update taxpayer accounts. IRM 21.6.7 lists dozens of IDRS CCs used in amended return processing: CC RTVUE (view return data), CC IMFOL (individual master file lookup), CC FFINQ (freeze inquiry), CC AMDISA (audit status).</td>
+</tr>
+<tr>
+<td><strong>MeF</strong> (Modernized e-File System)</td>
+<td>Accepts electronically filed 1040-X for current and two prior tax years (added August 2020). Transmits XML-formatted return data. E-filed 1040-X passes XML schema validation and IRS business rule checks before being marked "Accepted." Once accepted, it is forwarded to the same processing systems used for paper returns.</td>
+</tr>
+<tr>
+<td><strong>AMS</strong> (Account Management Services) / <strong>CII</strong> (Correspondence Imaging Inventory)</td>
+<td>Used by AM employees to view, control, and route cases. Paper returns are scanned into CII; MeF returns are viewable via AMS through the Employee User Portal (EUP).</td>
+</tr>
+<tr>
+<td><strong>Master File</strong> (Individual Master File / IMF)</td>
+<td>The IRS's primary repository of all taxpayer account data. Amended returns ultimately post adjustments here. Transaction Codes (TCs) mark each stage: <strong>TC 976</strong> posts when a duplicate or amended return is received; <strong>TC 977</strong> posts when the adjustment is made to the account. The original return remains on the account as <strong>TC 150</strong>.</td>
+</tr>
+<tr>
+<td><strong>xClaim Tool</strong></td>
+<td>An automated user-friendly interface allowing tax examiners to research tax records when reviewing amended returns.</td>
+</tr>
+<tr>
+<td><strong>RTR</strong> (Remittance Transaction Research)</td>
+<td>Used when payment research is needed for remittances accompanying an amended return.</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>E-filed vs. paper-filed:</strong> The IRS now allows electronic filing of Form 1040-X for the current and two prior tax years if the original was e-filed and the software supports it. E-filing eliminates mailing time and provides immediate acknowledgment, potentially saving one to two weeks of processing time, per <a href="https://www.irs.gov/filing/amended-return-frequently-asked-questions" target="_blank" rel="noopener">IRS amended return FAQ</a>. However, even e-filed 1040-Xs are forwarded to the same manual-review systems used for paper returns.</p>
+<p><strong>The CADE2 note:</strong> CADE2 (Customer Account Data Engine 2) is the IRS's modernized individual database replacing legacy mainframe systems. It posts returns and processes accounts on a daily cycle (vs. weekly under the old system), but amended return processing paths still flow through IDRS interfaces for most examiner and CSR actions.</p>
+<h3>Form-Specific Routing</h3>
+<p>Different amended forms have different processing homes:</p>
+<div class="tbl-wrap"><table>
+<thead>
+<tr>
+<th>Form</th>
+<th>Amendment Vehicle</th>
+<th>Primary Processing Unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1040-X</td>
+<td>Amended individual income tax return</td>
+<td>SP → AM (most); Exam if CAT-A criteria met</td>
+</tr>
+<tr>
+<td>1120-X</td>
+<td>Amended corporate income tax return</td>
+<td>SP → AM → LB&amp;I or SB/SE Exam</td>
+</tr>
+<tr>
+<td>1065 amended</td>
+<td>Amended partnership return</td>
+<td>Centralized Partnership Audit Regime (CPAR) unit; LB&amp;I</td>
+</tr>
+<tr>
+<td>1041 amended</td>
+<td>Amended fiduciary return</td>
+<td>SP → AM</td>
+</tr>
+<tr>
+<td>941-X</td>
+<td>Amended employer's quarterly tax return</td>
+<td>SP → AM (Employment Tax unit)</td>
+</tr>
+<tr>
+<td>FinCEN 114 (FBAR)</td>
+<td>Amended FBAR</td>
+<td>BSA E-Filing System → FinCEN → IRS LB&amp;I WEIIC (separate track)</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2>Section 2: Automated Checks — What Computers Verify Alone</h2>
+<p>This is where the news for amended-return filers diverges significantly from original-return filers — and where multiple TIGTA reports have raised persistent concerns.</p>
+<h3>What Original Returns Get (That Amended Returns Often Don't)</h3>
+<p>When an original Form 1040 is processed — whether paper or e-filed — it passes through a battery of automated systemic checks before any human touches it:</p>
+<ul>
+<li><strong>Document Perfection:</strong> Review for completeness, signatures, attachments</li>
+<li><strong>Error Resolution System (ERS):</strong> Identifies specific coding or data errors</li>
+<li><strong>Math verification:</strong> Systemic recomputation of all arithmetic</li>
+<li><strong>Information Return Transaction File (IRTF) / AUR (Automated Underreporter):</strong> Matches reported W-2, 1099, and K-1 data against IRS third-party files</li>
+<li><strong>Return Review Program (RRP):</strong> IRS's primary fraud-detection filter, applied in real time to refund-generating returns</li>
+<li><strong>Dependent Database:</strong> Risk-based selection for EITC-related audit</li>
+</ul>
+<p><strong>Amended returns skip most of this.</strong> Per <a href="https://www.tigta.gov/sites/default/files/reports/2024-11/201940042fr.pdf" target="_blank" rel="noopener">TIGTA's 2019 report</a>, the IRS does not use the same systemic verifications for amended returns that it uses for original returns. A human examiner or CSR is responsible for:</p>
+<ol>
+<li>Verifying math computations</li>
+<li>Ensuring required documentation is included</li>
+<li>Verifying eligibility for claimed deductions or credits</li>
+<li>Inputting the accepted adjustments into IDRS</li>
+</ol>
+<p><strong>What this means in practice:</strong> The automated systems that would catch a missing Form 1098-T for an education credit, or a 1099-INT that doesn't match reported interest income, may not flag those issues on an amended return the way they would on an original. This is a gap the IRS has acknowledged. However, it also means the amended return is not subjected to the IRS's automated fraud-score filters in the same way — the RRP and Dependent Database are not systematically applied to amended returns per the TIGTA findings.</p>
+<h3>Checks That Do Occur</h3>
+<p>Even without the full systemic battery, some automated verification does occur:</p>
+<ul>
+<li><strong>TIN validation:</strong> The IRS checks whether the Social Security Number or ITIN is valid and matches IRS records before posting any adjustment.</li>
+<li><strong>TC 976/977 posting:</strong> The IDRS system automatically posts TC 976 when an amended return is received, marking the account. TC 977 posts when the adjustment is accepted.</li>
+<li><strong>Freeze conditions:</strong> IDRS will automatically set certain freeze codes (e.g., the "-A freeze" for duplicate returns, "E- freeze" if no original TC 150 is present) that prevent automatic refund issuance and require human resolution, per <a href="https://www.irs.gov/irm/part21/irm_21-006-007r" target="_blank" rel="noopener">IRM 21.6.7</a>.</li>
+<li><strong>ASED/RSED check:</strong> IDRS systems flag cases where the Assessment Statute Expiration Date (ASED) or Refund Statute Expiration Date (RSED) is imminent, routing them for priority handling.</li>
+</ul>
+<hr />
+<h2>Section 3: Human Review — When Does an Examiner Actually Look?</h2>
+<h3>The Standard Path: No Audit</h3>
+<p>The majority of amended returns that result in a refund are processed without any examination function involvement. Per <a href="https://www.taxpayeradvocate.irs.gov/wp-content/uploads/2021/01/ARC20_MSP_09_AmendReturns.pdf" target="_blank" rel="noopener">NTA Annual Report 2020 (MSP #9)</a>, approximately <strong>40–42% of individual amended returns in Category 1 (refund) and Category 4 (no change)</strong> were routed from Submission Processing to Accounts Management for manual review in FYs 2017–2019. The remaining 58–60% were resolved at the SP level.</p>
+<p>Of those routed to AM, only a small fraction are referred to the Examination function (see Section 4).</p>
+<h3>CAT-A Criteria: The Gateway to Examination</h3>
+<p>The key threshold concept is <strong>Category A (CAT-A) examination criteria</strong>. When an AM employee reviews an amended return and it contains certain issues, the IRM requires referral to the Examination Classification unit rather than allowing AM to process the adjustment. CAT-A criteria are detailed in <a href="https://www.irs.gov/irm/part21/irm_21-005-003r" target="_blank" rel="noopener">IRM 21.5.3, Exhibit 21.5.3-2 and 21.5.3-3</a>, though specific dollar thresholds in those exhibits are redacted from public versions of the IRM.</p>
+<p>Categories of issues that trigger CAT-A review include:</p>
+<ul>
+<li><strong>Open TC 420 or open "-L" freeze:</strong> Means the account is already under examination</li>
+<li><strong>Claims for reduction in Net Investment Income Tax</strong> above a specified threshold</li>
+<li><strong>Form 8697 discrepancies</strong> (look-back interest on long-term contracts)</li>
+<li><strong>Protective claims</strong> (any protective claim automatically meets CAT-A criteria)</li>
+<li><strong>IRC 965 cases</strong> (transition tax / international provisions)</li>
+<li><strong>Refundable credit claims</strong> (EITC, ACTC) that were denied on the original return but now claimed on the amended return — a pattern TIGTA specifically flagged as high-risk</li>
+<li><strong>Changes in number of dependents, income amounts, or credit eligibility</strong> between original and amended return</li>
+</ul>
+<p><strong>Important:</strong> Not all CAT-A referrals become audits. Examination Classification reviews the referred return and decides whether to accept, disallow, or open an examination. Per the NTA data, a substantial number of returns referred to Exam are not ultimately audited.</p>
+<h3>Other Human Review Triggers</h3>
+<p>Beyond CAT-A, human intervention is required when:</p>
+<ul>
+<li>Return is incomplete, missing signatures, or missing required schedules</li>
+<li>Return cannot be mathematically verified as filed</li>
+<li>There is a freeze condition on the account requiring resolution (identity theft indicators, bankruptcy, etc.)</li>
+<li>The original return cannot be located for comparison</li>
+<li>The ASED is imminent (statute-sensitive case requiring priority routing)</li>
+<li>The amended return involves an injured spouse claim (Form 8379)</li>
+<li>Bankruptcy clearance is required</li>
+</ul>
+<h3>DIF and UIDIF Scores: Do They Apply to Amended Returns?</h3>
+<p>The <strong>Discriminant Index Function (DIF)</strong> and its unreported-income counterpart <strong>UIDIF</strong> are the IRS's primary statistical audit-selection scores for <em>original</em> tax returns. The DIF assigns a numeric score to each return based on how far its deductions, income types, and credits deviate from statistical norms for similar returns. Returns with higher DIF scores are more likely to be flagged for manual classification by an IRS agent who decides whether to open an examination.</p>
+<p>For amended returns, the DIF/UIDIF process does not work the same way. Amended returns are not scored through the same DIF pipeline as original returns and are not selected for the National Research Program (NRP) random audit in the same fashion. Instead, they go through the AM/Exam Classification path described above. The IRS.gov page on <a href="https://www.irs.gov/businesses/small-businesses-self-employed/irs-audits" target="_blank" rel="noopener">IRS Audits</a> confirms: "Amended returns also go through a screening process and the amended return may be selected for audit" — but this screening is the manual CAT-A classification process, not the DIF model.</p>
+<h3>IRS Divisions Handling Different Return Types</h3>
+<div class="tbl-wrap"><table>
+<thead>
+<tr>
+<th>Division</th>
+<th>Taxpayers Handled</th>
+<th>Amended Return Responsibility</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>W&amp;I (Wage &amp; Investment)</strong></td>
+<td>Individuals with wage income, TPI under $200K</td>
+<td>Most 1040-X filers; campus correspondence exams</td>
+</tr>
+<tr>
+<td><strong>SB/SE (Small Business / Self-Employed)</strong></td>
+<td>Self-employed, small businesses, S-corps, partnerships, TPI $200K–$10M</td>
+<td>1040-X with Schedule C/E issues; office and field exams</td>
+</tr>
+<tr>
+<td><strong>LB&amp;I (Large Business &amp; International)</strong></td>
+<td>Corporations over $10M in assets; international compliance</td>
+<td>1120-X; Form 8938 / FBAR cross-examination; WEIIC (Withholding Exchange &amp; Individual International Compliance) practice area handles international individuals</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2>Section 4: Audit Selection — The Actual Numbers</h2>
+<h3>What the Data Shows</h3>
+<p>The most granular published data on amended return audit rates comes from the <a href="https://www.taxpayeradvocate.irs.gov/wp-content/uploads/2021/01/ARC20_MSP_09_AmendReturns.pdf" target="_blank" rel="noopener">National Taxpayer Advocate's FY 2020 Annual Report to Congress, Most Serious Problem #9</a>, drawing on IRS internal data for FY 2017–2019:</p>
+<div class="tbl-wrap"><table>
+<thead>
+<tr>
+<th>Fiscal Year</th>
+<th>1040-X Category 1 &amp; 4 received</th>
+<th>Referred to Exam &amp; selected for audit</th>
+<th>Referral rate</th>
+<th>Actually audited</th>
+<th>Audit rate of referred returns</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FY 2017</td>
+<td>~2,152,508</td>
+<td>30,405</td>
+<td><strong>3.3%</strong></td>
+<td>16,910</td>
+<td>56% of referred</td>
+</tr>
+<tr>
+<td>FY 2018</td>
+<td>~2,383,472</td>
+<td>26,571</td>
+<td><strong>2.9%</strong></td>
+<td>12,735</td>
+<td>48% of referred</td>
+</tr>
+<tr>
+<td>FY 2019</td>
+<td>~1,998,609</td>
+<td>24,007</td>
+<td><strong>3.0%</strong></td>
+<td>6,440</td>
+<td>27% of referred</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>The bottom line:</strong> In FY 2019, of all individual amended returns in Category 1 (refund) and Category 4 (no change) received by Submission Processing, approximately <strong>3%</strong> were referred to Examination and selected for potential audit. Of those referred, only <strong>27%</strong> were actually audited. That translates to roughly <strong>0.8% of the relevant amended return universe</strong> being audited in FY 2019 — and the trend was declining.</p>
+<h3>Original Return Audit Rates for Comparison</h3>
+<p>For context, from the <a href="https://www.irs.gov/newsroom/irs-releases-2023-data-book-describing-agencys-transformation-through-statistics" target="_blank" rel="noopener">IRS FY 2023 Data Book</a>: the IRS examined <strong>0.44%</strong> of individual returns filed for tax years 2013–2021 (through end of FY 2023). For high-income filers (TPI $10M+), the rate was <strong>8.7%</strong> for the same period.</p>
+<p>The IRS <a href="https://www.irs.gov/statistics/compliance-presence" target="_blank" rel="noopener">compliance presence page</a> reports exam coverage rates for the most recent year outside the statute of limitations period (TY 2019): 11.0% for TPI over $10M, 3.1% for TPI $5M–$10M, and 1.6% for TPI $1M–$5M.</p>
+<hr />
+<h2>Callout Box: What Actually Triggers an Audit of an Amended Return</h2>
+<blockquote>
+<p><strong>What the IRS itself says:</strong> "Filing an amended return does not affect the selection process of the original return. However, amended returns also go through a screening process and the amended return may be selected for audit." — <a href="https://www.irs.gov/businesses/small-businesses-self-employed/irs-audits" target="_blank" rel="noopener">IRS.gov, IRS Audits</a></p>
+</blockquote>
+<p><strong>Real audit triggers on amended returns (based on TIGTA and IRM sources):</strong></p>
+<ol>
+<li><strong>CAT-A criteria met</strong> — the claim involves an issue category flagged for Examination Classification (large refundable credit claims, high-dollar deduction changes, Net Investment Income Tax adjustments)</li>
+<li><strong>Refundable credits newly claimed on amended return</strong> — especially EITC or ACTC not on the original; TIGTA specifically identified this as high-risk</li>
+<li><strong>Open examination on the original return</strong> (TC 420 on account) — the examiner naturally reviews the amended return as part of the existing audit</li>
+<li><strong>Change in income, dependents, or credits</strong> between original and amended that creates statistical anomalies</li>
+<li><strong>Related-party transactions</strong> — if a business partner or investor whose return is under examination is tied to your return</li>
+<li><strong>Identity theft indicators</strong> on the TIN — requires separate validation before processing</li>
+<li><strong>High-income filer</strong> — the IRS's FY 2024 examination plan specifically shifted toward TPI &gt;$400K filers; <a href="https://www.tigta.gov/sites/default/files/reports/2025-08/2025308030fr.pdf" target="_blank" rel="noopener">TIGTA FY 2025 Report</a> confirms examinations of high-income returns made up 17% of total audit starts, nearly 2.5x the historical average</li>
+</ol>
+<p><strong>What does NOT automatically trigger an audit:</strong>
+- Filing a 1040-X to claim additional deductions or credits
+- Filing an amended return that results in a refund
+- Filing multiple years of amended returns simultaneously
+- The size of the refund alone (though large refunds increase the likelihood of CAT-A screening)</p>
+<hr />
+<h2>Section 5: Myths Dispelled — "Amended Returns Automatically Trigger Audits"</h2>
+<p>This belief is not supported by the data. TIGTA's oversight work has actually criticized the IRS for the <em>opposite</em> problem: failing to adequately review questionable amended returns before issuing refunds. The concern regulators have expressed about amended returns is not that the IRS is too aggressive in auditing them — it is that the IRS lacks adequate systemic controls to catch erroneous refund claims.</p>
+<p><strong>Key TIGTA findings:</strong></p>
+<ul>
+<li>
+<p><a href="https://www.tigta.gov/sites/default/files/reports/2024-11/201940042fr.pdf" target="_blank" rel="noopener">TIGTA Report 2019-40-042</a> (July 2019): Sampled 235 amended returns from 1.1 million processed in PY 2017; found 33 (14%) were questionable — but the IRS had identified none of them before issuing refunds. The report criticized the IRS for <em>insufficient</em> review of amended returns, not for being over-aggressive.</p>
+</li>
+<li>
+<p><a href="https://www.tigta.gov/sites/default/files/reports/2024-11/201440028fr.pdf" target="_blank" rel="noopener">TIGTA Report 2014-40-028</a> (April 2014): Sampled 259 amended returns; found 44 (17%) were potentially erroneous. The systemic verifications used for original returns were not applied. Estimated $439M in potentially erroneous refunds in FY 2012.</p>
+</li>
+<li>
+<p><a href="https://www.taxpayeradvocate.irs.gov/wp-content/uploads/2021/01/ARC20_MSP_09_AmendReturns.pdf" target="_blank" rel="noopener">NTA Annual Report 2020, MSP #9</a>: "The IRS does not disclose to taxpayers that if their amended returns are selected for audit, processing will likely take several more months and sometimes the IRS will simply stop processing them."</p>
+</li>
+</ul>
+<p>The <strong>absence</strong> of a comprehensive audit strategy for amended returns — rather than excessive scrutiny — has been the persistent concern of oversight bodies. The IRS does not have a systematic, risk-based model for selecting amended returns for examination comparable to the DIF system for original returns.</p>
+<p><strong>A note on the 2020-30-024 report:</strong> TIGTA Report 2020-30-024 is titled "The IRS Continues to Lack a Comprehensive Strategy for Examining Amended Returns." This report directly supports the conclusion that amended return examination is under-resourced and under-systematized, not over-aggressive. The finding is that the IRS needs a <em>better</em> strategy — not that taxpayers filing amended returns face heightened scrutiny.</p>
+<hr />
+<h2>Section 6: FBAR and Form 8938 — The Foreign Account Reporting Layer</h2>
+<h3>Two Separate Filing Obligations</h3>
+<p>The question mentions FBAR and "the higher form" for accounts over $50,000. These are two distinct reporting regimes that can coexist for the same taxpayer:</p>
+<div class="tbl-wrap"><table>
+<thead>
+<tr>
+<th>Form</th>
+<th>Authority</th>
+<th>Threshold</th>
+<th>Filing Location</th>
+<th>Amending Vehicle</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>FinCEN Form 114 (FBAR)</strong></td>
+<td>Bank Secrecy Act (Title 31)</td>
+<td>Aggregate value &gt;$10,000 at any point during year</td>
+<td>BSA E-Filing System (FinCEN), NOT attached to tax return</td>
+<td>New FinCEN 114 marked "Amended" via BSA E-Filing System</td>
+</tr>
+<tr>
+<td><strong>Form 8938</strong> (FATCA / Statement of Specified Foreign Financial Assets)</td>
+<td>IRC §6038D (Title 26)</td>
+<td>Unmarried, U.S.-resident: &gt;$50,000 on last day, or &gt;$75,000 at any time</td>
+<td>Filed with Form 1040</td>
+<td>Amended via Form 1040-X with corrected 8938 attached</td>
+</tr>
+</tbody>
+</table></div>
+<p>Form 8938 is the "higher form" for accounts exceeding the $50,000 threshold. It is filed directly with the income tax return as part of the 1040 package — unlike the FBAR, which goes to FinCEN independently.</p>
+<h3>Critical Legal Separation: Title 26 vs. Title 31</h3>
+<p>This is among the most important structural facts for FBAR-related amended returns. Per <a href="https://www.irs.gov/irm/part4/irm_04-063-004" target="_blank" rel="noopener">IRM 4.63.4</a>:</p>
+<blockquote>
+<p>Income tax examinations are Title 26 examinations while FBAR inquiries are Title 31 examinations; information gathered in a Title 26 examination <strong>cannot be used in a Title 31 inquiry unless there is a related statute memorandum approved by the Territory Manager</strong>.</p>
+</blockquote>
+<p>This means an IRS examiner conducting an income tax audit of your 1040-X cannot automatically transfer findings to an FBAR enforcement action. The two tracks require separate authorization to connect, and that authorization must go up the management chain.</p>
+<h3>Who Handles FBAR and International Amended Returns</h3>
+<p>International individual compliance (including FBAR examination) is handled by the <strong>LB&amp;I Division's WEIIC (Withholding Exchange &amp; Individual International Compliance) Practice Area</strong>, not by the W&amp;I or SB/SE units that handle most individual 1040-X filings. IRM 4.63.4 governs these examinations. The WEIIC unit has its own examination procedures, including use of international investigative tools (TECS, Exchange of Information requests, formal document requests under IRC §982).</p>
+<h3>FBAR Statute of Limitations</h3>
+<p>The <strong>civil FBAR penalty statute of limitations</strong> is <strong>six years from the date of the violation</strong>, per <a href="https://www.irs.gov/irm/part4/irm_04-063-004" target="_blank" rel="noopener">IRM 4.63.4</a> — significantly longer than the standard three-year income tax assessment period. The "date of the violation" for a failure-to-file case is typically the FBAR due date (April 15, or October 15 with automatic extension).</p>
+<h3>Extended Income Tax SOL for Unreported Foreign Income</h3>
+<p>When a taxpayer has unreported income from foreign financial assets exceeding <strong>$5,000</strong>, IRC §6501(e)(1)(A)(ii) extends the assessment statute for the income tax return to <strong>six years</strong>, not the usual three. Per [IRM 4.63.4]:</p>
+<blockquote>
+<p>"Once an examiner confirms that the taxpayer held a foreign financial asset and the unreported income from that foreign financial asset exceeded $5,000.00, the six-year statute of limitations under IRC 6501(e)(1)(A)(ii) applies."</p>
+</blockquote>
+<p>This is relevant context: if an amended return involving foreign accounts also involves unreported income above that threshold, the six-year window applies to the tax assessment (not the FBAR penalty, which has its own six-year SOL).</p>
+<h3>Amending an FBAR</h3>
+<p>Per <a href="https://www.irs.gov/newsroom/details-on-reporting-foreign-bank-and-financial-accounts" target="_blank" rel="noopener">IRS.gov on FBAR reporting</a>: An amended FBAR is filed by completing a new FinCEN Form 114 in full, checking the "Amended" box, and entering the BSA ID number from the original filing in the Prior Report BSA Identifier field. The amended FBAR is filed through the BSA E-Filing System, not through the IRS. It does not go through the 1040-X pathway.</p>
+<hr />
+<h2>Section 7: Statute of Limitations — Does Filing 1040-X Reset the Clock?</h2>
+<h3>The General Rule: No Reset, No Extension</h3>
+<p>Per the IRS's own <a href="https://www.irs.gov/pub/fatca/int_practice_units/int_c_115r.pdf" target="_blank" rel="noopener">International Practice Unit on the Statute of Limitations</a>:</p>
+<blockquote>
+<p><strong>"In general, the filing of a taxable amended return does not extend the statute of limitations."</strong></p>
+</blockquote>
+<p>The standard three-year assessment SOL under <strong>IRC §6501(a)</strong> runs from the date the original return was filed (or the due date if filed early). Filing a 1040-X does not restart that clock. It does not give the IRS additional time to audit the original return. And per the IRS's own example: if a taxpayer files a 1040-X for a year whose SOL has already expired, the IRS generally cannot assess additional tax based on that amendment.</p>
+<h3>The 60-Day Exception: IRC §6501(c)(7)</h3>
+<p>There is one narrow exception. Under <strong>IRC §6501(c)(7)</strong>:</p>
+<blockquote>
+<p>If an amended return is filed within <strong>60 days before the expiration of the assessment period</strong>, and the amended return <strong>shows an increase in tax owed</strong>, the IRS gets an additional <strong>60 days</strong> (beginning the day after the amended return is filed) to assess the additional amount.</p>
+</blockquote>
+<p>This is a narrow window with a specific purpose: preventing a taxpayer from using a last-minute amended return to create a de facto limitation bar. It does not reset the full SOL; it simply provides the IRS a short window to assess the amount disclosed on the amendment.</p>
+<p><strong>Example from IRS practice unit:</strong> A taxpayer filed a 2009 return on April 15, 2010. The three-year SOL expires April 15, 2013. On June 29, 2015, the taxpayer submits a signed 1040-X for 2009 disclosing additional income. The IRS cannot assess based on that amendment — the SOL had already expired, and the 1040-X filing did not revive it.</p>
+<h3>SOL Summary Table</h3>
+<div class="tbl-wrap"><table>
+<thead>
+<tr>
+<th>Scenario</th>
+<th>SOL Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Standard amended return filed mid-period</td>
+<td>No effect on SOL</td>
+</tr>
+<tr>
+<td>Amended return filed within 60 days of SOL expiration, showing additional tax</td>
+<td>SOL extended 60 days for the additional amount only (IRC §6501(c)(7))</td>
+</tr>
+<tr>
+<td>Amended return filed after SOL has expired</td>
+<td>No assessment possible for expired period; amendment cannot revive SOL</td>
+</tr>
+<tr>
+<td>Amended return with unreported foreign income &gt;$5,000</td>
+<td>Income tax SOL was already extended to 6 years under IRC §6501(e)(1)(A)(ii)</td>
+</tr>
+<tr>
+<td>Failure to file international information returns (Form 5471, 8865, etc.)</td>
+<td>SOL extended 3 years beyond the date the required information is furnished (IRC §6501(c)(8))</td>
+</tr>
+<tr>
+<td>FBAR civil penalty</td>
+<td>Separate 6-year SOL from date of violation (Title 31; not IRC §6501)</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2>Section 8: Processing Times — What to Expect in 2025–2026</h2>
+<h3>Published IRS Estimates</h3>
+<p>The <a href="https://www.irs.gov/filing/amended-return-frequently-asked-questions" target="_blank" rel="noopener">IRS's amended return FAQ</a> as of June 2024 states:</p>
+<ul>
+<li>"You should generally allow <strong>8 to 12 weeks</strong> for your Form 1040-X to be processed."</li>
+<li>"However, in some cases, processing could take up to <strong>16 weeks</strong>."</li>
+<li>The "Where's My Amended Return?" (WMAR) tool provides status updates approximately 3 weeks after filing.</li>
+</ul>
+<h3>What the National Taxpayer Advocate Says</h3>
+<p>The NTA's <a href="https://www.irs.gov/newsroom/national-taxpayer-advocate-delivers-annual-report-to-congress-finds-taxpayer-service-was-strong-in-2025-but-foresees-challenges-for-taxpayers-who-encounter-problems-in-2026" target="_blank" rel="noopener">January 2026 Annual Report to Congress</a> provides more sobering real-world data:</p>
+<ul>
+<li><strong>Individual amended returns (Form 1040-X):</strong> Average processing time of <strong>over 5 months</strong> (approximately 20+ weeks) for 3.7 million returns processed in FY 2025</li>
+<li><strong>Business amended returns:</strong> Average processing time of <strong>over 13 months</strong> for approximately 1.6 million business amended returns</li>
+<li>The NTA has specifically recommended the IRS automate amended return processing, improve notice clarity, and establish procedures to execute Form 907 (Agreement to Extend the Time to Bring Suit) to protect taxpayers from missing refund claim deadlines</li>
+</ul>
+<h3>Historical Median Processing Times (Pre-Backlog)</h3>
+<p>Per <a href="https://www.taxpayeradvocate.irs.gov/wp-content/uploads/2021/01/ARC20_MSP_09_AmendReturns.pdf" target="_blank" rel="noopener">NTA Annual Report 2020, MSP #9</a>:</p>
+<div class="tbl-wrap"><table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Audited?</th>
+<th>Median Processing (FY 2019)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Individual 1040-X, refund result</td>
+<td>No</td>
+<td><strong>4 weeks</strong></td>
+</tr>
+<tr>
+<td>Individual 1040-X, refund result</td>
+<td>Yes</td>
+<td><strong>20 weeks</strong></td>
+</tr>
+<tr>
+<td>Individual 1040-X, no change</td>
+<td>No</td>
+<td><strong>4 weeks</strong></td>
+</tr>
+<tr>
+<td>Individual 1040-X, no change</td>
+<td>Yes</td>
+<td><strong>29 weeks</strong></td>
+</tr>
+<tr>
+<td>Maximum observed (individual)</td>
+<td>Yes</td>
+<td><strong>100 weeks</strong></td>
+</tr>
+</tbody>
+</table></div>
+<h3>Delays That Can Extend Processing</h3>
+<p>Per <a href="https://www.irs.gov/filing/amended-return-frequently-asked-questions" target="_blank" rel="noopener">IRS FAQ</a>, amended returns can take longer when they:</p>
+<ul>
+<li>Have errors or are incomplete</li>
+<li>Are not signed</li>
+<li>Include Form 8379 (Injured Spouse Allocation)</li>
+<li>Are affected by identity theft or fraud</li>
+<li>Require routing to a specialized area (international, bankruptcy, etc.)</li>
+<li>Require clearance by the bankruptcy area</li>
+<li>Require review and approval by a revenue officer</li>
+<li>Are under appeal or audit reconsideration</li>
+</ul>
+<hr />
+<h2>Practical Takeaways</h2>
+<ol>
+<li>
+<p><strong>File the 1040-X.</strong> The data does not support the fear that filing invites scrutiny. The IRS explicitly states it does not affect original return selection, and the real audit exposure on amended returns is low for straightforward corrections.</p>
+</li>
+<li>
+<p><strong>E-file if eligible.</strong> For the current year and two prior years, e-filing the 1040-X saves mailing time and provides immediate acknowledgment. It does not reduce examination risk.</p>
+</li>
+<li>
+<p><strong>Include clear explanations.</strong> Part III of Form 1040-X requires a written explanation of each change. A clear, well-documented explanation reduces the likelihood of examiner follow-up requests.</p>
+</li>
+<li>
+<p><strong>Plan for longer wait times.</strong> Despite the IRS's published 8–12 week estimate, expect 5+ months in the current environment per NTA data. The WMAR tool will show "Received → Adjusted → Completed" status.</p>
+</li>
+<li>
+<p><strong>For FBAR / Form 8938 issues:</strong> Treat these as legally separate from the income tax amendment. The FBAR is filed through FinCEN's BSA system, not the IRS. Form 8938 is part of the 1040 package and is corrected via 1040-X. An income tax examiner reviewing the 1040-X cannot automatically open an FBAR investigation without separate management authorization — the two tracks operate under different statutes (Title 26 vs. Title 31).</p>
+</li>
+<li>
+<p><strong>SOL is not reset.</strong> Amending a return does not restart the IRS's clock to audit that year. The three-year SOL continues to run from the original filing date, with the narrow 60-day exception for amendments filed within 60 days of SOL expiration.</p>
+</li>
+</ol>
+<hr />
+<hr />
+<h2>Supplemental Section: What Specifically Happens with a Paper Form 8938</h2>
+<p><em>This section addresses the processing path for a paper-filed Form 8938 — both on an original return and when added via a 1040-X amendment.</em></p>
+<h3>How Paper Form 8938 Gets Into IRS Systems</h3>
+<p>Form 8938 is not a standalone filing. It is attached to the taxpayer's annual income tax return — filed with the 1040 package, not sent separately. The IRS instructions state explicitly: <a href="https://www.irs.gov/pub/irs-pdf/i8938.pdf" target="_blank" rel="noopener">"Do not send a Form 8938 to the IRS unless it is attached to an annual return."</a> If you omitted Form 8938 from an original return, the IRS FAQ directs you to <a href="https://www.irs.gov/businesses/corporations/basic-questions-and-answers-on-form-8938" target="_blank" rel="noopener">"file Form 1040-X, Amended U.S. Individual Income Tax Return, with your Form 8938 attached."</a></p>
+<p>This means a paper 8938 travels through the system as part of either:
+- A paper-filed original Form 1040 package, or
+- A paper-filed Form 1040-X with 8938 attached</p>
+<p><strong>Neither route gives the 8938 its own electronic record at intake.</strong> The form arrives as a physical document and enters the IRS's paper-processing pipeline.</p>
+<h3>The ISRP Transcription Process — and Its Documented Failures</h3>
+<p>Paper Form 8938 data is transcribed into IRS systems through the <strong>Integrated Submission and Remittance Processing System (ISRP)</strong> — the same data-entry system used for other paper returns. However, the Form 8938 transcription process was implemented as an <strong>exception process</strong> and has been flagged by TIGTA as structurally deficient in several ways, documented in <a href="https://www.oversight.gov/sites/default/files/documents/reports/2017-10/201530085fr.pdf" target="_blank" rel="noopener">TIGTA Report 2015-30-085</a>:</p>
+<div class="tbl-wrap"><table>
+<thead>
+<tr>
+<th>Deficiency</th>
+<th>What TIGTA Found</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>No validation controls</strong></td>
+<td>Transcribed Form 8938 data do not have the same data validity input controls and correction processes as other tax forms the IRS transcribes. Accuracy depends entirely on manual data entry by individual transcribers.</td>
+</tr>
+<tr>
+<td><strong>Continuation statements historically not transcribed</strong></td>
+<td>Form 8938 continuation statements — the pages used when a taxpayer has more than one foreign account or foreign asset to report — were not transcribed at all before a July 2015 programming change. If a taxpayer had multiple foreign accounts, the accounts on the continuation pages simply did not make it into any IRS database.</td>
+</tr>
+<tr>
+<td><strong>Losses cannot be input as negative amounts</strong></td>
+<td>The transcription system could not handle negative dollar values; a fix was not implemented until January 2016.</td>
+</tr>
+<tr>
+<td><strong>Two-person verification rejected</strong></td>
+<td>The IRS considered implementing a two-person verification process for transcribed 8938 data but made a "risk-based decision" not to do so.</td>
+</tr>
+<tr>
+<td><strong>Pilot program instability</strong></td>
+<td>The transcription pilot started June 2014, was suspended when fields were not properly captured, revised, and restarted October 2014.</td>
+</tr>
+</tbody>
+</table></div>
+<p>TIGTA's bottom-line assessment: <em>"Any analysis of potentially inaccurate and/or incomplete paper Form 8938 data will likely limit management's ability to make informed decisions and achieve IRS compliance objectives for FATCA."</em></p>
+<h3>What This Means in Practice</h3>
+<p><strong>The IRS's own Form 8938 data is incomplete and unvalidated for a significant portion of the filing population.</strong> For taxpayers who:
+- Filed paper returns during the early years of FATCA (2011–2015), or
+- Had more than one foreign account or asset to report (requiring a continuation statement), or
+- Had losses on foreign assets</p>
+<p>...the Form 8938 data in IRS systems may be incomplete, inaccurate, or simply absent. This is not a minor administrative footnote — it directly affects the IRS's ability to cross-match taxpayer 8938 disclosures against the Form 8966 data reported by foreign financial institutions.</p>
+<h3>The Form 8966 Matching Problem</h3>
+<p>FATCA works on a two-sided reporting model:
+- <strong>Side 1:</strong> U.S. taxpayers self-report on Form 8938 (attached to their return)
+- <strong>Side 2:</strong> Foreign financial institutions report their U.S. accountholder data to the IRS on <strong>Form 8966, FATCA Report</strong></p>
+<p>The theory is that the IRS can cross-match the two data sets to identify nonfilers and underreporters. The reality, documented across multiple TIGTA reports, is considerably messier.</p>
+<p>Per the <a href="https://www.tigta.gov/sites/default/files/reports/2026-04/2026308009fr.pdf" target="_blank" rel="noopener">April 2026 TIGTA report on Campaign 896</a>, the IRS's matching efforts have been hobbled because: foreign financial institution records often lack valid Taxpayer Identification Numbers (TINs), making automated matching impossible or unreliable. The IRS's Campaign 896 unit — the dedicated FATCA enforcement campaign — currently does not even use Form 1099 data to identify Form 8938 nonfilers because of concerns about generating too many false positive leads.</p>
+<h3>The Enforcement Reality: The Campaign 896 Numbers</h3>
+<p>Perhaps the most illuminating data point for an anxious client is what happened when the IRS's own Campaign 896 identified 405 apparently noncompliant taxpayers — a set selected for having <em>significant</em> unreported foreign account balances. Per the <a href="https://www.tigta.gov/sites/default/files/reports/2026-04/2026308009fr.pdf" target="_blank" rel="noopener">April 2026 TIGTA report</a>, as reported by the <a href="https://www.journalofaccountancy.com/news/2026/apr/irs-flagged-fatca-noncompliance-but-followed-up-with-few-exams-penalties/" target="_blank" rel="noopener">Journal of Accountancy</a>:</p>
+<div class="tbl-wrap"><table>
+<thead>
+<tr>
+<th>Outcome</th>
+<th>Number</th>
+<th>Detail</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Taxpayers identified as noncompliant</td>
+<td>405</td>
+<td>Aggregate balances of ~$6.2 trillion</td>
+</tr>
+<tr>
+<td>Referred for possible examination</td>
+<td>164</td>
+<td>Average balance: $1.3 billion per taxpayer</td>
+</tr>
+<tr>
+<td>Actually examined</td>
+<td><strong>12</strong></td>
+<td>Of the 164 referred</td>
+</tr>
+<tr>
+<td>Penalties actually assessed</td>
+<td><strong>$80,000</strong></td>
+<td>For five taxpayers — on accounts averaging $1.3 billion</td>
+</tr>
+<tr>
+<td>Additional tax assessed</td>
+<td>$39.7 million</td>
+<td>For five taxpayers</td>
+</tr>
+<tr>
+<td>Received only educational letters</td>
+<td>241</td>
+<td>Average balance: $377 million; no penalty assessed</td>
+</tr>
+</tbody>
+</table></div>
+<p>TIGTA's summary: the IRS "has taken limited enforcement actions, even when it has identified egregious noncompliance" and campaign officials told TIGTA that <strong>failure-to-file penalty assessments are not even part of Campaign 896's enforcement strategy</strong>. The IRS disagreed with TIGTA's recommendation to change this.</p>
+<p>This data does not mean the IRS is indifferent to FBAR/FATCA enforcement — LB&amp;I has separate offshore voluntary disclosure and streamlined procedures programs, and criminal referrals do occur for willful violations. But for the population of taxpayers with good-faith compliance issues, the data paints a picture of a FATCA enforcement program that is resource-constrained, matching-limited, and — at least at the campaign level — not aggressively penalizing.</p>
+<h3>The Specific Case: An Amended Form 8938 Where No Additional Tax Is Owed</h3>
+<p>This scenario — a corrected or previously omitted Form 8938 where the underlying tax liability does not change — creates a distinctive processing situation that differs in important structural ways from the standard 1040-X path described elsewhere in this memorandum.</p>
+<h4>The Vehicle Problem: What Does the 8938 Attach To?</h4>
+<p>Form 8938 cannot be filed standalone. The <a href="https://www.irs.gov/instructions/i8938" target="_blank" rel="noopener">IRS instructions</a> state explicitly: <strong>"Do not send a Form 8938 to the IRS unless it is attached to an annual return or an amended return."</strong> This creates a mechanical problem when no tax changes — the 8938 must be attached to something.</p>
+<p>The IRS <a href="https://www.irs.gov/businesses/corporations/basic-questions-and-answers-on-form-8938" target="_blank" rel="noopener">Basic Q&amp;A page for Form 8938</a> gives the standard answer for an omitted 8938: file a Form 1040-X with the 8938 attached. But it does not address the scenario where the 1040-X would show zero change in columns A, B, and C — i.e., the amended return is a $0 change vehicle used purely to deliver the information return. Practitioners do exactly this: they complete the 1040-X with identical figures in all columns, explain in Part III that the purpose is solely to add the Form 8938, sign it, and mail it in.</p>
+<p>The IRS's current <a href="https://www.irs.gov/individuals/international-taxpayers/delinquent-international-information-return-submission-procedures" target="_blank" rel="noopener">Delinquent International Information Return Submission Procedures (DIIRSP) page</a> — updated as of November 2020 — confirms the filing mechanism for Form 8938 (and all delinquent international information returns except Forms 3520/3520-A): <strong>"All delinquent international information returns, other than Forms 3520 and 3520-A, should be attached to an amended income tax return and filed according to the applicable instructions for the amended return."</strong></p>
+<p>So a zero-dollar 1040-X is, in practice, the required vehicle — not because tax is changing, but because the IRS's own procedures require an amended return as the carrier.</p>
+<h4>What Happens When the IRS Receives a Zero-Change 1040-X with 8938 Attached</h4>
+<p>This is where the processing path diverges most sharply from a standard amended return:</p>
+<p><strong>1. The 1040-X is processed as a Category 4 (no-change) amended return.</strong> The Accounts Management examiner or CSR will open the package, see a 1040-X showing no tax change in any column, and process the amendment as a no-change filing. Per the <a href="https://www.taxpayeradvocate.irs.gov/wp-content/uploads/2021/01/ARC20_MSP_09_AmendReturns.pdf" target="_blank" rel="noopener">NTA Annual Report data</a>, Category 4 no-change amended returns have a median unaudited processing time of 2–4 weeks in normal years and over 5 months in the current environment.</p>
+<p><strong>2. The examiner does not have a tax adjustment to input.</strong> Because columns A, B, and C of the 1040-X are identical, there is no TC 29X adjustment to post to the Individual Master File. The 1040-X is essentially acknowledged and closed without any monetary account change.</p>
+<p><strong>3. The Form 8938 is processed separately — and here the transcription problems described above apply in full.</strong> The 8938 is physically separated from the 1040-X carrier (or reviewed alongside it) and its data is transcribed via ISRP into the FATCA database. All of the documented limitations — no validation controls, continuation statement transcription gaps (pre-2015), inability to input losses as negatives — apply to this transcription step.</p>
+<p><strong>4. Critically: the IRS's automated systems do not link the 8938 informational filing to the 1040-X processing in any seamless way.</strong> The 1040-X generates TC 976/977 entries on the Individual Master File tracking the amended return lifecycle. The Form 8938 data, once transcribed, lives in a separate FATCA database that the IDRS-based 1040-X processing system does not automatically reconcile against. A LB&amp;I WEIIC examiner looking at the FATCA database would see the 8938 record; an AM examiner processing the 1040-X would see the tax account. The two are not automatically joined.</p>
+<p><strong>5. The CAT-A referral analysis for the 1040-X is minimal.</strong> Because there is no tax change, there is no refund claim, no credit adjustment, and no income change to evaluate. The standard CAT-A triggers — large refundable credit claims, high-dollar deduction changes, net investment income tax adjustments — are not present. A zero-change 1040-X has a materially lower CAT-A referral profile than one claiming a refund.</p>
+<h4>The Penalty Risk Difference: DIIRSP vs. Quiet Disclosure via 1040-X</h4>
+<p>This is a critical distinction the memorandum cannot paper over: <strong>the method of filing an amended 8938 with no tax change has meaningful penalty-risk implications that are separate from the audit-selection question.</strong></p>
+<p>Per the <a href="https://www.irs.gov/individuals/international-taxpayers/delinquent-international-information-return-submission-procedures" target="_blank" rel="noopener">IRS DIIRSP page</a>:</p>
+<blockquote>
+<p>"During the processing of the delinquent information return, <strong>penalties may be assessed without considering the attached reasonable cause statement.</strong> It may be necessary for taxpayers to respond to specific correspondence from the IRS and submit or resubmit reasonable cause information."</p>
+</blockquote>
+<p>This is the key operational reality for a zero-change amended 8938: the IRS may assess the <strong>$10,000 failure-to-file penalty under IRC §6038D(d)</strong> as part of routine processing, before anyone reviews a reasonable cause statement. The taxpayer would then receive a notice and need to respond to have the penalty abated. This is not the same as an audit; it is a penalty-assessment-and-response cycle that runs through a different IRS function.</p>
+<p>Two compliance paths exist for a delinquent or corrected 8938 with no tax change, and they carry different procedural protections:</p>
+<div class="tbl-wrap"><table>
+<thead>
+<tr>
+<th>Path</th>
+<th>Filing mechanism</th>
+<th>Penalty protection</th>
+<th>Audit risk</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Zero-dollar 1040-X + 8938 attached</strong> ("quiet disclosure")</td>
+<td>1040-X with $0 change in all columns, 8938 attached, reasonable cause statement in Part III</td>
+<td>Penalties may be assessed during processing without considering the statement; taxpayer must respond to correspondence</td>
+<td>Standard amended return screening; low CAT-A referral risk for $0-change return</td>
+</tr>
+<tr>
+<td><strong>DIIRSP (Delinquent International Information Return Submission Procedures)</strong></td>
+<td>Same vehicle (1040-X with 8938 attached) + formal reasonable cause statement labeled as DIIRSP submission</td>
+<td>Same automatic-assessment risk, but the DIIRSP label may route the package for dedicated review</td>
+<td>Same screening applies; DIIRSP does not provide audit immunity</td>
+</tr>
+</tbody>
+</table></div>
+<p>Note that as of November 2020, the IRS collapsed the former standalone DIIRSP program into normal filing procedures — the distinction is now primarily in how the reasonable cause statement is labeled and formatted, not in a separate submission track. The <a href="https://www.irs.gov/individuals/international-taxpayers/delinquent-international-information-return-submission-procedures" target="_blank" rel="noopener">current IRS DIIRSP page</a> confirms that the filing vehicle is the same (amended return), and that penalties may still be assessed during processing.</p>
+<p>For willful noncompliance, the <a href="https://www.irs.gov/compliance/criminal-investigation/voluntary-disclosure-practice" target="_blank" rel="noopener">Voluntary Disclosure Program (VDP)</a> is a separate, more protective path — but it requires disclosing and paying all taxes for six years and is designed for a different fact pattern than a good-faith reporting correction with no unreported income.</p>
+<h4>The SOL Hook Specific to an Unfiled or Corrected 8938</h4>
+<p>One additional dimension not present in standard 1040-X filings: <strong>the statute of limitations on the entire tax return can remain open</strong> until the Form 8938 is properly filed.</p>
+<p>Under <strong>IRC §6501(c)(8)</strong>, the assessment statute on the <em>entire</em> tax return (not just the 8938 item) is extended by <strong>three years</strong> from the date the taxpayer furnishes the required Form 8938 information — if the failure was not due to reasonable cause. This is a significant and often-overlooked exposure: a taxpayer who filed a 2020 return but omitted the 8938 does not have a standard three-year SOL expiring in 2023. The SOL remains open until the 8938 is filed, and then extends an additional three years from that filing date, for items related to the 8938 failure.</p>
+<p>Filing the amended 8938 (via zero-change 1040-X) therefore has the effect of <em>starting</em> the SOL clock on the §6501(c)(8) extension — which is protective, not harmful. Once the corrected 8938 is filed, the three-year extension period begins to run toward closure.</p>
+<hr />
+<h3>When Amending to Add a Missing Form 8938</h3>
+<p>If a taxpayer files a 1040-X to add a previously omitted Form 8938, the processing path is:</p>
+<ol>
+<li>The 1040-X is received at an IRS campus and routed to SP or AM for manual review</li>
+<li>The attached Form 8938 is part of the paper package — it is reviewed by the same examiner or CSR handling the 1040-X</li>
+<li>The 8938 data will eventually be transcribed via ISRP (subject to the limitations above)</li>
+<li>The 1040-X adjustment is posted to the account via IDRS; the 8938 data goes into the FATCA database as a separate record</li>
+<li>The LB&amp;I WEIIC unit is responsible for any subsequent examination of the international dimensions — but as the Campaign 896 data shows, referral to examination from an amended 8938 filing is statistically uncommon</li>
+</ol>
+<p><strong>The SOL extension specific to Form 8938:</strong> If you file a 1040-X adding a Form 8938 that discloses more than $5,000 in gross income from foreign financial assets that was omitted from the original return, the IRS has a <strong>six-year assessment window</strong> (not three years) under IRC §6501(e)(1)(A)(ii) — but that six-year period ran from the date the original return was filed, not from the date of the amendment. The amendment does not extend or reset that window; it has been running since the original filing.</p>
+<p>Additionally, if the failure to file Form 8938 is remedied by the amended return, the <strong>three-year SOL extension under IRC §6038D(d)</strong> (which extends the statute three years from the date the required information is furnished) applies only to items related to the failure — not to the entire return.</p>
+<hr />
+<h2>Citations</h2>
+<p>All citations are linked inline throughout this memorandum. Primary sources used include:</p>
+<ul>
+<li><a href="https://www.irs.gov/irm/part21/irm_21-006-007r" target="_blank" rel="noopener">IRS Internal Revenue Manual 21.6.7 — Adjusting Individual Tax Accounts</a></li>
+<li><a href="https://www.irs.gov/irm/part21/irm_21-005-003r" target="_blank" rel="noopener">IRS Internal Revenue Manual 21.5.3 — General Claims Procedures</a></li>
+<li><a href="https://www.irs.gov/irm/part21/irm_21-005-004r" target="_blank" rel="noopener">IRS Internal Revenue Manual 21.5.4 — General Math Error Procedures</a></li>
+<li><a href="https://www.irs.gov/irm/part4/irm_04-063-004" target="_blank" rel="noopener">IRS Internal Revenue Manual 4.63.4 — International Individual Compliance Examination Procedures</a></li>
+<li><a href="https://www.irs.gov/e-file-providers/modernized-e-file-overview" target="_blank" rel="noopener">IRS Modernized e-File (MeF) Overview</a></li>
+<li><a href="https://www.irs.gov/forms-pubs/about-form-1040x" target="_blank" rel="noopener">IRS About Form 1040-X</a></li>
+<li><a href="https://www.irs.gov/filing/amended-return-frequently-asked-questions" target="_blank" rel="noopener">IRS Amended Return FAQ</a></li>
+<li><a href="https://www.irs.gov/businesses/small-businesses-self-employed/irs-audits" target="_blank" rel="noopener">IRS Audits Page (amended return screening language)</a></li>
+<li><a href="https://www.irs.gov/businesses/small-businesses-self-employed/report-of-foreign-bank-and-financial-accounts-fbar" target="_blank" rel="noopener">IRS FBAR Reporting Page</a></li>
+<li><a href="https://www.irs.gov/forms-pubs/about-form-8938" target="_blank" rel="noopener">IRS Form 8938 Information Page</a></li>
+<li><a href="https://www.irs.gov/pub/fatca/int_practice_units/int_c_115r.pdf" target="_blank" rel="noopener">IRS Overview of SOL on Assessment of Tax (International Practice Unit)</a></li>
+<li><a href="https://www.irs.gov/newsroom/irs-releases-2023-data-book-describing-agencys-transformation-through-statistics" target="_blank" rel="noopener">IRS FY 2023 Data Book Press Release</a></li>
+<li><a href="https://www.tigta.gov/sites/default/files/reports/2024-11/201440028fr.pdf" target="_blank" rel="noopener">TIGTA Report 2014-40-028 — Amended Tax Return Filing and Processing Needs to Be Modernized</a></li>
+<li><a href="https://www.tigta.gov/sites/default/files/reports/2024-11/201940042fr.pdf" target="_blank" rel="noopener">TIGTA Report 2019-40-042 — Actions Have Not Been Taken to Improve Amended Tax Return Review Procedures</a></li>
+<li><a href="https://www.tigta.gov/sites/default/files/reports/2025-08/2025308030fr.pdf" target="_blank" rel="noopener">TIGTA FY 2025 Report on High-Income Individual Examinations</a></li>
+<li><a href="https://www.taxpayeradvocate.irs.gov/wp-content/uploads/2021/01/ARC20_MSP_09_AmendReturns.pdf" target="_blank" rel="noopener">National Taxpayer Advocate FY 2020 Annual Report to Congress, MSP #9 — Amended Returns</a></li>
+<li><a href="https://www.irs.gov/newsroom/national-taxpayer-advocate-delivers-annual-report-to-congress-finds-taxpayer-service-was-strong-in-2025-but-foresees-challenges-for-taxpayers-who-encounter-problems-in-2026" target="_blank" rel="noopener">National Taxpayer Advocate January 2026 Annual Report to Congress</a></li>
+<li><a href="https://www.fincen.gov/report-foreign-bank-and-financial-accounts" target="_blank" rel="noopener">FinCEN FBAR Reporting Page</a></li>
+<li><a href="https://www.irs.gov/newsroom/details-on-reporting-foreign-bank-and-financial-accounts" target="_blank" rel="noopener">IRS FBAR Amending Guidance</a></li>
+<li><a href="https://www.thetaxadviser.com/issues/2024/may/amendment-to-sec-6501-not-retroactive/" target="_blank" rel="noopener">Tax Adviser — Amendment to Sec. 6501 Retroactivity</a></li>
+</ul>
+    </div>
+  </section>
+
+  <!-- 04 METHODOLOGY -->
+  <section id="methodology">
+    <span class="sec-no">03 · Methodology</span>
+    <h2>Coverage <em>Receipts</em></h2>
+    <dl class="meth">
+      <dt>Lived-experience Reddit corpus</dt>
+      <dd>Reddit scrape, 2026-06-01 (initial pass + hardened retry merge). 131 search queries across r/USExpatTaxes, r/tax, r/taxhelp, r/IRS, r/expats, r/AmericansAbroad, r/Accounting, r/personalfinance, plus three cross-Reddit global queries. 470 unique posts captured; 220 strongly relevant to Form 8938 specifically; 213 (45%) carry full top-comment trees. Bucket distribution among the 220: FBAR-vs-8938 confusion 53%, penalty exposure 35%, amended workflow 28%, Streamlined 24%, quiet disclosure 15%, DIIRSP/reasonable-cause 11%, audit experience 5%.</dd>
+      <dt>Institutional record</dt>
+      <dd>Deep research into IRS amended-return processing, drawn from the Internal Revenue Manual (21.6.7, 21.5.3, 21.5.4, 4.63.4), TIGTA reports (2014-40-028, 2019-40-042, FY2025 high-income exam report), the National Taxpayer Advocate FY2020 and January 2026 reports to Congress, the IRS FY2023 Data Book, and the IRS DIIRSP, FBAR, and Form 8938 guidance pages. The full report, with every inline citation, is reproduced verbatim in <a class="ref" href="#part2">Part II</a>.</dd>
+      <dt>Limitations disclosed</dt>
+      <dd>Reddit lived experience is signal, not legal advice — and the Reddit corpus skews toward complications, since people who post are by definition people with concerns; the silent majority who file correctly is invisible. Pro-voice attribution is best-effort by username consistency and writing style, not credential-verified. DIIRSP changed materially in November 2020 (removal of automatic acceptance); conclusions lean on post-2020 advice where it differs. The decision fork in Section 01 turns on facts only Chuck and his preparer can confirm.</dd>
+    </dl>
+
+  </section>
+
+  <footer>
+    <div class="fl">
+      <span class="b">Altura · Decision Architecture</span><br>
+      MEMO-2026-06-01-8938 · Prepared for Chuck · Personal Inquiry<br>
+      Donald G. Shelton · donald@altura-life.com<br>
+      Companion to MEMO-2026-05-31-FBAR
+    </div>
+  </footer>
+
 </div>
-
-<script>
-// ── STATE ──────────────────────────────────────────────────────────────────
-let state = {
-  activeTab: 'all',
-  activePost: null,
-  chatHistory: [],
-  posts: [],
-  domains: [],
-  isGallery: false,
-  loading: false,
-};
-
-// ── INIT ───────────────────────────────────────────────────────────────────
-async function init() {
-  await loadStats();
-  await loadDomains();
-  await loadPosts();
-}
-
-async function loadStats() {
-  const r = await fetch('/api/stats');
-  const s = await r.json();
-  document.getElementById('statsBar').innerHTML =
-    `<b>${s.total.toLocaleString()}</b> posts &nbsp;|&nbsp; ` +
-    Object.entries(s.by_type)
-      .sort((a,b)=>b[1]-a[1])
-      .slice(0,4)
-      .map(([t,n]) => `${t}: <b>${n}</b>`)
-      .join(' &nbsp;|&nbsp; ');
-}
-
-async function loadDomains() {
-  const r = await fetch('/api/domains');
-  state.domains = await r.json();
-  renderTabs();
-}
-
-async function loadPosts() {
-  state.loading = true;
-  const domain = state.activeTab === 'all' ? '' : state.activeTab;
-  const type   = state.isGallery ? 'media' : '';
-  const params = new URLSearchParams({ limit: 150 });
-  if (domain) params.set('domain', domain);
-  if (type)   params.set('type', type);
-
-  const r = await fetch('/api/posts?' + params);
-  state.posts = await r.json();
-  state.loading = false;
-
-  if (state.isGallery) renderGallery();
-  else renderFeed();
-}
-
-// ── TABS ───────────────────────────────────────────────────────────────────
-function renderTabs() {
-  const tabs = document.getElementById('tabs');
-  const domainMap = {
-    'Trading/Finance':        '📈 Trading',
-    'AI/Prompts/Automation':  '🤖 AI',
-    'Longevity/Biohacking':   '🧬 Longevity',
-    'Kink/Creative/Selena':   '✦ Creative',
-    'Travel/Expat/LatAm':     '🌎 Travel',
-    'Language/Music/Culture': '🎵 Culture',
-    'Productivity/Tools':     '⚡ Tools',
-  };
-
-  let html = `<button class="tab ${state.activeTab==='all'&&!state.isGallery?'active':''}" onclick="setTab('all')">All</button>`;
-  for (const d of state.domains) {
-    const label = domainMap[d] || d.split('/')[0];
-    const active = state.activeTab === d && !state.isGallery ? 'active' : '';
-    html += `<button class="tab ${active}" onclick="setTab('${d}')">${label}</button>`;
-  }
-  html += `<button class="tab gallery-tab ${state.isGallery?'active':''}" onclick="setGallery()">🖼 Gallery</button>`;
-  tabs.innerHTML = html;
-}
-
-function setTab(domain) {
-  state.activeTab  = domain;
-  state.isGallery  = false;
-  state.activePost = null;
-  closePanel();
-  renderTabs();
-  loadPosts();
-}
-
-function setGallery() {
-  state.isGallery  = true;
-  state.activePost = null;
-  closePanel();
-  renderTabs();
-  loadPosts();
-}
-
-// ── FEED ───────────────────────────────────────────────────────────────────
-function credClass(score) {
-  const s = parseFloat(score);
-  if (s >= 60) return 'cred-high';
-  if (s >= 30) return 'cred-med';
-  return 'cred-low';
-}
-
-function typeTag(type) {
-  if (!type || type === 'link' || type === 'text') return '';
-  return `<span class="type-tag type-${type}">${type}</span>`;
-}
-
-function renderFeed() {
-  const list = document.getElementById('postList');
-  if (!state.posts.length) {
-    list.innerHTML = '<div class="empty"><div class="icon">○</div>No posts found</div>';
-    return;
-  }
-
-  list.innerHTML = state.posts.map(p => {
-    const sig   = p.preference_signal;
-    const cls   = sig==='kept'?'kept': sig==='skipped'?'skipped':'';
-    const fresh = `fresh-${p.freshness_status||'stale'}`;
-    const isSelected = state.activePost?.id === p.id ? 'selected' : '';
-
-    return `<div class="post-card ${cls} ${isSelected}" id="card-${p.id}" onclick="selectPost('${p.id}')">
-  <div class="post-meta">
-    <span class="sub-tag">r/${p.subreddit}</span>
-    <span class="domain-tag">${(p.domain||'').split('/')[0]}</span>
-    ${typeTag(p.post_type)}
-    <span class="cred-score ${credClass(p.credibility_score)}">${p.credibility_score}</span>
-    <span class="${fresh}" style="font-size:10px">${p.freshness_status||''}</span>
-  </div>
-  <div class="post-title">${escHtml(p.title)}</div>
-  <div class="post-scores">
-    <span>↑ ${Number(p.score).toLocaleString()}</span>
-    <span>${Math.round(parseFloat(p.upvote_ratio||0)*100)}%</span>
-    <span>💬 ${p.num_comments}</span>
-    <span style="color:var(--muted);font-size:10px">${p.age_days}d ago</span>
-  </div>
-  <div class="post-actions" onclick="event.stopPropagation()">
-    <button class="btn btn-research" onclick="openResearch('${p.id}')">Research</button>
-    <button class="btn btn-keep"     onclick="signal('${p.id}','kept',1.0)">Keep</button>
-    <button class="btn btn-skip"     onclick="signal('${p.id}','skipped',-0.3)">Skip</button>
-    <button class="btn btn-open"     onclick="window.open('${p.permalink}','_blank')">↗</button>
-  </div>
-</div>`;
-  }).join('');
-}
-
-// ── GALLERY ────────────────────────────────────────────────────────────────
-function renderGallery() {
-  const list = document.getElementById('postList');
-  if (!state.posts.length) {
-    list.innerHTML = '<div class="empty"><div class="icon">○</div>No media posts found</div>';
-    return;
-  }
-
-  list.style.padding = '0';
-  list.innerHTML = `<div class="gallery-grid">${state.posts.map(p => {
-    const thumb = getThumb(p);
-    return `<div class="gallery-card" id="card-${p.id}">
-  <div class="gallery-thumb">
-    ${thumb ? `<img src="${thumb}" onerror="this.parentElement.innerHTML='🖼'" loading="lazy">` : '🖼'}
-  </div>
-  <div class="gallery-info">
-    <div class="gallery-title">${escHtml(p.title)}</div>
-    <div class="gallery-actions">
-      <button class="gallery-btn research" onclick="openResearch('${p.id}')">AI</button>
-      <button class="gallery-btn keep"     onclick="signal('${p.id}','kept',1.0)">✓</button>
-      <button class="gallery-btn skip"     onclick="signal('${p.id}','skipped',-0.3)">✕</button>
-      <button class="gallery-btn"          onclick="window.open('${p.permalink}','_blank')">↗</button>
-    </div>
-  </div>
-</div>`;
-  }).join('')}</div>`;
-}
-
-function getThumb(p) {
-  if (p.url && /\.(jpg|jpeg|png|gif|webp)$/i.test(p.url)) return p.url;
-  if (p.url && p.url.includes('i.redd.it')) return p.url;
-  return null;
-}
-
-// ── POST SELECTION ─────────────────────────────────────────────────────────
-function selectPost(id) {
-  const post = state.posts.find(p => p.id === id);
-  if (!post) return;
-
-  if (state.activePost?.id === id) {
-    closePanel();
-    return;
-  }
-
-  state.activePost  = post;
-  state.chatHistory = [];
-  document.querySelectorAll('.post-card').forEach(c => c.classList.remove('selected'));
-  const card = document.getElementById('card-' + id);
-  if (card) card.classList.add('selected');
-
-  openResearch(id);
-}
-
-function openResearch(id) {
-  const post = state.posts.find(p => p.id === id);
-  if (!post) return;
-  state.activePost  = post;
-  state.chatHistory = [];
-
-  document.getElementById('panelTitle').textContent = post.title;
-  document.getElementById('panelMeta').innerHTML =
-    `<span class="sub-tag">r/${post.subreddit}</span>
-     <span class="domain-tag">${(post.domain||'').split('/')[0]}</span>
-     <span class="cred-score ${credClass(post.credibility_score)}">${post.credibility_score}</span>`;
-
-  document.getElementById('chatHistory').innerHTML = '';
-  document.getElementById('main').classList.add('panel-open');
-
-  // Auto-send initial research prompt
-  const templates = {
-    'Trading/Finance':        'Analyze this for my trading context. Mechanics, edge, when NOT to use it.',
-    'AI/Prompts/Automation':  "What's genuinely new here? Fit with my stack?",
-    'Longevity/Biohacking':   'Evidence quality and practical protocol assessment.',
-    'Kink/Creative/Selena':   'Expand this for Selena project applications.',
-    'Travel/Expat/LatAm':     'Verify this. Panama/Colombia nuance?',
-    'Language/Music/Culture': 'Cultural context and Latin American connections.',
-    'Productivity/Tools':     'Fit with my stack? Integration complexity?',
-  };
-  const prompt = templates[post.domain] || 'Research this and assess relevance.';
-  sendWithText(prompt);
-}
-
-function closePanel() {
-  document.getElementById('main').classList.remove('panel-open');
-  state.activePost  = null;
-  state.chatHistory = [];
-  document.querySelectorAll('.post-card').forEach(c => c.classList.remove('selected'));
-}
-
-// ── CHAT ───────────────────────────────────────────────────────────────────
-function handleKey(e) {
-  if (e.key === 'Enter' && !e.shiftKey) {
-    e.preventDefault();
-    sendMessage();
-  }
-}
-
-function autoResize(el) {
-  el.style.height = 'auto';
-  el.style.height = Math.min(el.scrollHeight, 100) + 'px';
-}
-
-function sendMessage() {
-  const input = document.getElementById('chatInput');
-  const text  = input.value.trim();
-  if (!text) return;
-  input.value = '';
-  input.style.height = 'auto';
-  sendWithText(text);
-}
-
-async function sendWithText(text) {
-  if (!state.activePost) return;
-
-  const btn = document.getElementById('sendBtn');
-  btn.disabled = true;
-
-  appendMsg('user', text);
-  state.chatHistory.push({ role: 'user', content: text });
-
-  const thinking = appendMsg('thinking', 'Researching...');
-
-  try {
-    const r = await fetch('/api/chat', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        post: state.activePost,
-        messages: state.chatHistory,
-      })
-    });
-    const data = await r.json();
-    thinking.remove();
-
-    if (data.reply) {
-      appendMsg('assistant', data.reply);
-      state.chatHistory.push({ role: 'assistant', content: data.reply });
-    } else {
-      appendMsg('assistant', 'Error: ' + (data.error || 'Unknown error'));
-    }
-  } catch(e) {
-    thinking.remove();
-    appendMsg('assistant', 'Connection error: ' + e.message);
-  }
-
-  btn.disabled = false;
-}
-
-function appendMsg(role, text) {
-  const div = document.createElement('div');
-  div.className = `chat-msg ${role}`;
-  div.textContent = text;
-  const history = document.getElementById('chatHistory');
-  history.appendChild(div);
-  history.scrollTop = history.scrollHeight;
-  return div;
-}
-
-// ── SIGNALS ────────────────────────────────────────────────────────────────
-async function signal(id, sig, weight) {
-  await fetch('/api/signal', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ id, signal: sig, weight })
-  });
-  const card = document.getElementById('card-' + id);
-  if (card) {
-    card.classList.remove('kept','skipped');
-    card.classList.add(sig);
-  }
-  // Update in state
-  const post = state.posts.find(p => p.id === id);
-  if (post) post.preference_signal = sig;
-}
-
-// ── UTILS ──────────────────────────────────────────────────────────────────
-function escHtml(s) {
-  return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-}
-
-init();
-</script>
 </body>
 </html>
