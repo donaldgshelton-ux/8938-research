@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reddit Intelligence</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:        #0a0a0f;
+  --surface:   #13131a;
+  --surface2:  #1a1a24;
+  --border:    #ffffff10;
+  --accent:    #ff6b35;
+  --accent2:   #7c5cfc;
+  --gold:      #f0b429;
+  --text:      #e8e8f0;
+  --muted:     #6b6b80;
+  --success:   #22c55e;
+  --danger:    #ef4444;
+  --radius:    10px;
+  --panel:     340px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  height: 100dvh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── HEADER ── */
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 20px;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+  flex-shrink: 0;
+  gap: 12px;
+}
+
+.logo {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 16px;
+  letter-spacing: -0.5px;
+  color: var(--accent);
+  white-space: nowrap;
+}
+
+.logo span { color: var(--muted); font-weight: 400; }
+
+.stats-bar {
+  display: flex;
+  gap: 16px;
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.stats-bar b { color: var(--accent); }
+
+/* ── DOMAIN TABS ── */
+.tabs {
+  display: flex;
+  gap: 4px;
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+  overflow-x: auto;
+  flex-shrink: 0;
+  scrollbar-width: none;
+}
+
+.tabs::-webkit-scrollbar { display: none; }
+
+.tab {
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  white-space: nowrap;
+  transition: all 0.2s;
+  background: transparent;
+}
+
+.tab:hover { color: var(--text); border-color: #ffffff30; }
+.tab.active { background: var(--accent); color: white; border-color: var(--accent); }
+.tab.gallery-tab.active { background: var(--accent2); border-color: var(--accent2); }
+
+/* ── MAIN LAYOUT ── */
+.main {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* ── POST LIST ── */
+.post-list {
+  width: 100%;
+  overflow-y: auto;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: width 0.3s ease;
+}
+
+.main.panel-open .post-list {
+  width: calc(100% - var(--panel));
+}
+
+.post-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px;
+  cursor: pointer;
+  transition: all 0.15s;
+  position: relative;
+}
+
+.post-card:hover { border-color: #ffffff25; background: var(--surface2); }
+.post-card.selected { border-color: var(--accent); background: var(--surface2); }
+.post-card.kept { border-left: 3px solid var(--success); }
+.post-card.skipped { opacity: 0.4; }
+
+.post-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 7px;
+  flex-wrap: wrap;
+}
+
+.sub-tag {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--accent2);
+  background: #7c5cfc15;
+  padding: 2px 7px;
+  border-radius: 4px;
+}
+
+.domain-tag {
+  font-size: 10px;
+  color: var(--muted);
+  background: var(--surface2);
+  padding: 2px 7px;
+  border-radius: 4px;
+}
+
+.type-tag {
+  font-size: 10px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: 'DM Mono', monospace;
+}
+
+.type-image  { color: #f0b429; background: #f0b42915; }
+.type-video  { color: #22c55e; background: #22c55e15; }
+.type-gallery{ color: #7c5cfc; background: #7c5cfc15; }
+.type-text   { color: #6b6b80; background: #6b6b8015; }
+.type-link   { color: #6b6b80; background: #6b6b8015; }
+
+.fresh-current { color: var(--success); }
+.fresh-aging   { color: var(--gold); }
+.fresh-stale   { color: var(--muted); }
+
+.post-title {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.4;
+  margin-bottom: 8px;
+  color: var(--text);
+}
+
+.post-scores {
+  display: flex;
+  gap: 12px;
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  color: var(--muted);
+  align-items: center;
+}
+
+.cred-score {
+  font-weight: 500;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 11px;
+}
+
+.cred-high   { color: var(--success); background: #22c55e15; }
+.cred-med    { color: var(--gold);    background: #f0b42915; }
+.cred-low    { color: var(--muted);   background: #6b6b8015; }
+
+.post-actions {
+  display: flex;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.btn {
+  padding: 5px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  border: 1px solid var(--border);
+  transition: all 0.15s;
+  background: transparent;
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+}
+
+.btn:hover { background: var(--surface2); }
+.btn-research { border-color: var(--accent); color: var(--accent); }
+.btn-research:hover { background: var(--accent); color: white; }
+.btn-keep    { border-color: var(--success); color: var(--success); }
+.btn-keep:hover { background: var(--success); color: white; }
+.btn-skip    { border-color: var(--danger); color: var(--danger); }
+.btn-skip:hover { background: var(--danger); color: white; }
+.btn-open    { color: var(--muted); }
+
+/* ── RESEARCH PANEL ── */
+.research-panel {
+  width: var(--panel);
+  min-width: var(--panel);
+  border-left: 1px solid var(--border);
+  background: var(--surface);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+.main.panel-open .research-panel {
+  transform: translateX(0);
+  position: relative;
+}
+
+.panel-header {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.panel-post-title {
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.4;
+  margin-bottom: 6px;
+  color: var(--text);
+}
+
+.panel-post-meta {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.panel-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  color: var(--muted);
+  width: 26px;
+  height: 26px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chat-history {
+  flex: 1;
+  overflow-y: auto;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.chat-msg {
+  max-width: 90%;
+  padding: 10px 13px;
+  border-radius: 10px;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.chat-msg.user {
+  background: var(--accent2);
+  color: white;
+  align-self: flex-end;
+  border-bottom-right-radius: 3px;
+}
+
+.chat-msg.assistant {
+  background: var(--surface2);
+  color: var(--text);
+  align-self: flex-start;
+  border-bottom-left-radius: 3px;
+  border: 1px solid var(--border);
+  white-space: pre-wrap;
+}
+
+.chat-msg.thinking {
+  background: var(--surface2);
+  color: var(--muted);
+  align-self: flex-start;
+  font-style: italic;
+  font-size: 12px;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse { 0%,100%{opacity:.5} 50%{opacity:1} }
+
+.chat-input-area {
+  padding: 12px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.chat-input {
+  flex: 1;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 9px 12px;
+  color: var(--text);
+  font-size: 13px;
+  font-family: 'DM Sans', sans-serif;
+  resize: none;
+  outline: none;
+  max-height: 100px;
+  min-height: 38px;
+}
+
+.chat-input:focus { border-color: var(--accent2); }
+
+.send-btn {
+  background: var(--accent);
+  border: none;
+  border-radius: 8px;
+  color: white;
+  padding: 0 14px;
+  cursor: pointer;
+  font-size: 16px;
+  flex-shrink: 0;
+  transition: opacity 0.15s;
+}
+
+.send-btn:hover { opacity: 0.85; }
+.send-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+/* ── GALLERY VIEW ── */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 10px;
+  padding: 14px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.gallery-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.15s;
+  position: relative;
+}
+
+.gallery-card:hover { border-color: #ffffff25; transform: scale(1.02); }
+.gallery-card.selected { border-color: var(--accent2); }
+
+.gallery-thumb {
+  width: 100%;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+  background: var(--surface2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+  font-size: 24px;
+}
+
+.gallery-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.gallery-info {
+  padding: 8px 10px;
+}
+
+.gallery-title {
+  font-size: 11px;
+  color: var(--text);
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin-bottom: 5px;
+}
+
+.gallery-actions {
+  display: flex;
+  gap: 5px;
+}
+
+.gallery-btn {
+  flex: 1;
+  padding: 4px;
+  border-radius: 5px;
+  font-size: 11px;
+  cursor: pointer;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--muted);
+  transition: all 0.15s;
+}
+
+.gallery-btn.keep:hover  { background: var(--success); color: white; border-color: var(--success); }
+.gallery-btn.skip:hover  { background: var(--danger);  color: white; border-color: var(--danger); }
+.gallery-btn.research:hover { background: var(--accent); color: white; border-color: var(--accent); }
+
+/* ── EMPTY STATE ── */
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  color: var(--muted);
+  gap: 10px;
+  font-size: 14px;
+}
+
+.empty .icon { font-size: 40px; }
+
+/* ── MOBILE ── */
+@media (max-width: 680px) {
+  :root { --panel: 100vw; }
+
+  .main.panel-open .post-list { display: none; }
+
+  .main.panel-open .research-panel {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    z-index: 100;
+    width: 100%;
+    transform: none;
+  }
+
+  .stats-bar { display: none; }
+  .logo { font-size: 14px; }
+
+  .gallery-grid {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  }
+
+  .post-card { padding: 12px; }
+  .post-title { font-size: 13px; }
+}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">RI<span>P</span></div>
+  <div class="stats-bar" id="statsBar">Loading...</div>
+</header>
+
+<div class="tabs" id="tabs"></div>
+
+<div class="main" id="main">
+  <div class="post-list" id="postList">
+    <div class="empty"><div class="icon">⟳</div>Loading posts...</div>
+  </div>
+  <div class="research-panel" id="researchPanel">
+    <div class="panel-header" id="panelHeader">
+      <button class="panel-close" onclick="closePanel()">✕</button>
+      <div class="panel-post-title" id="panelTitle"></div>
+      <div class="panel-post-meta" id="panelMeta"></div>
+    </div>
+    <div class="chat-history" id="chatHistory"></div>
+    <div class="chat-input-area">
+      <textarea class="chat-input" id="chatInput"
+        placeholder="Ask about this post..."
+        rows="1"
+        onkeydown="handleKey(event)"
+        oninput="autoResize(this)"></textarea>
+      <button class="send-btn" id="sendBtn" onclick="sendMessage()">▶</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── STATE ──────────────────────────────────────────────────────────────────
+let state = {
+  activeTab: 'all',
+  activePost: null,
+  chatHistory: [],
+  posts: [],
+  domains: [],
+  isGallery: false,
+  loading: false,
+};
+
+// ── INIT ───────────────────────────────────────────────────────────────────
+async function init() {
+  await loadStats();
+  await loadDomains();
+  await loadPosts();
+}
+
+async function loadStats() {
+  const r = await fetch('/api/stats');
+  const s = await r.json();
+  document.getElementById('statsBar').innerHTML =
+    `<b>${s.total.toLocaleString()}</b> posts &nbsp;|&nbsp; ` +
+    Object.entries(s.by_type)
+      .sort((a,b)=>b[1]-a[1])
+      .slice(0,4)
+      .map(([t,n]) => `${t}: <b>${n}</b>`)
+      .join(' &nbsp;|&nbsp; ');
+}
+
+async function loadDomains() {
+  const r = await fetch('/api/domains');
+  state.domains = await r.json();
+  renderTabs();
+}
+
+async function loadPosts() {
+  state.loading = true;
+  const domain = state.activeTab === 'all' ? '' : state.activeTab;
+  const type   = state.isGallery ? 'media' : '';
+  const params = new URLSearchParams({ limit: 150 });
+  if (domain) params.set('domain', domain);
+  if (type)   params.set('type', type);
+
+  const r = await fetch('/api/posts?' + params);
+  state.posts = await r.json();
+  state.loading = false;
+
+  if (state.isGallery) renderGallery();
+  else renderFeed();
+}
+
+// ── TABS ───────────────────────────────────────────────────────────────────
+function renderTabs() {
+  const tabs = document.getElementById('tabs');
+  const domainMap = {
+    'Trading/Finance':        '📈 Trading',
+    'AI/Prompts/Automation':  '🤖 AI',
+    'Longevity/Biohacking':   '🧬 Longevity',
+    'Kink/Creative/Selena':   '✦ Creative',
+    'Travel/Expat/LatAm':     '🌎 Travel',
+    'Language/Music/Culture': '🎵 Culture',
+    'Productivity/Tools':     '⚡ Tools',
+  };
+
+  let html = `<button class="tab ${state.activeTab==='all'&&!state.isGallery?'active':''}" onclick="setTab('all')">All</button>`;
+  for (const d of state.domains) {
+    const label = domainMap[d] || d.split('/')[0];
+    const active = state.activeTab === d && !state.isGallery ? 'active' : '';
+    html += `<button class="tab ${active}" onclick="setTab('${d}')">${label}</button>`;
+  }
+  html += `<button class="tab gallery-tab ${state.isGallery?'active':''}" onclick="setGallery()">🖼 Gallery</button>`;
+  tabs.innerHTML = html;
+}
+
+function setTab(domain) {
+  state.activeTab  = domain;
+  state.isGallery  = false;
+  state.activePost = null;
+  closePanel();
+  renderTabs();
+  loadPosts();
+}
+
+function setGallery() {
+  state.isGallery  = true;
+  state.activePost = null;
+  closePanel();
+  renderTabs();
+  loadPosts();
+}
+
+// ── FEED ───────────────────────────────────────────────────────────────────
+function credClass(score) {
+  const s = parseFloat(score);
+  if (s >= 60) return 'cred-high';
+  if (s >= 30) return 'cred-med';
+  return 'cred-low';
+}
+
+function typeTag(type) {
+  if (!type || type === 'link' || type === 'text') return '';
+  return `<span class="type-tag type-${type}">${type}</span>`;
+}
+
+function renderFeed() {
+  const list = document.getElementById('postList');
+  if (!state.posts.length) {
+    list.innerHTML = '<div class="empty"><div class="icon">○</div>No posts found</div>';
+    return;
+  }
+
+  list.innerHTML = state.posts.map(p => {
+    const sig   = p.preference_signal;
+    const cls   = sig==='kept'?'kept': sig==='skipped'?'skipped':'';
+    const fresh = `fresh-${p.freshness_status||'stale'}`;
+    const isSelected = state.activePost?.id === p.id ? 'selected' : '';
+
+    return `<div class="post-card ${cls} ${isSelected}" id="card-${p.id}" onclick="selectPost('${p.id}')">
+  <div class="post-meta">
+    <span class="sub-tag">r/${p.subreddit}</span>
+    <span class="domain-tag">${(p.domain||'').split('/')[0]}</span>
+    ${typeTag(p.post_type)}
+    <span class="cred-score ${credClass(p.credibility_score)}">${p.credibility_score}</span>
+    <span class="${fresh}" style="font-size:10px">${p.freshness_status||''}</span>
+  </div>
+  <div class="post-title">${escHtml(p.title)}</div>
+  <div class="post-scores">
+    <span>↑ ${Number(p.score).toLocaleString()}</span>
+    <span>${Math.round(parseFloat(p.upvote_ratio||0)*100)}%</span>
+    <span>💬 ${p.num_comments}</span>
+    <span style="color:var(--muted);font-size:10px">${p.age_days}d ago</span>
+  </div>
+  <div class="post-actions" onclick="event.stopPropagation()">
+    <button class="btn btn-research" onclick="openResearch('${p.id}')">Research</button>
+    <button class="btn btn-keep"     onclick="signal('${p.id}','kept',1.0)">Keep</button>
+    <button class="btn btn-skip"     onclick="signal('${p.id}','skipped',-0.3)">Skip</button>
+    <button class="btn btn-open"     onclick="window.open('${p.permalink}','_blank')">↗</button>
+  </div>
+</div>`;
+  }).join('');
+}
+
+// ── GALLERY ────────────────────────────────────────────────────────────────
+function renderGallery() {
+  const list = document.getElementById('postList');
+  if (!state.posts.length) {
+    list.innerHTML = '<div class="empty"><div class="icon">○</div>No media posts found</div>';
+    return;
+  }
+
+  list.style.padding = '0';
+  list.innerHTML = `<div class="gallery-grid">${state.posts.map(p => {
+    const thumb = getThumb(p);
+    return `<div class="gallery-card" id="card-${p.id}">
+  <div class="gallery-thumb">
+    ${thumb ? `<img src="${thumb}" onerror="this.parentElement.innerHTML='🖼'" loading="lazy">` : '🖼'}
+  </div>
+  <div class="gallery-info">
+    <div class="gallery-title">${escHtml(p.title)}</div>
+    <div class="gallery-actions">
+      <button class="gallery-btn research" onclick="openResearch('${p.id}')">AI</button>
+      <button class="gallery-btn keep"     onclick="signal('${p.id}','kept',1.0)">✓</button>
+      <button class="gallery-btn skip"     onclick="signal('${p.id}','skipped',-0.3)">✕</button>
+      <button class="gallery-btn"          onclick="window.open('${p.permalink}','_blank')">↗</button>
+    </div>
+  </div>
+</div>`;
+  }).join('')}</div>`;
+}
+
+function getThumb(p) {
+  if (p.url && /\.(jpg|jpeg|png|gif|webp)$/i.test(p.url)) return p.url;
+  if (p.url && p.url.includes('i.redd.it')) return p.url;
+  return null;
+}
+
+// ── POST SELECTION ─────────────────────────────────────────────────────────
+function selectPost(id) {
+  const post = state.posts.find(p => p.id === id);
+  if (!post) return;
+
+  if (state.activePost?.id === id) {
+    closePanel();
+    return;
+  }
+
+  state.activePost  = post;
+  state.chatHistory = [];
+  document.querySelectorAll('.post-card').forEach(c => c.classList.remove('selected'));
+  const card = document.getElementById('card-' + id);
+  if (card) card.classList.add('selected');
+
+  openResearch(id);
+}
+
+function openResearch(id) {
+  const post = state.posts.find(p => p.id === id);
+  if (!post) return;
+  state.activePost  = post;
+  state.chatHistory = [];
+
+  document.getElementById('panelTitle').textContent = post.title;
+  document.getElementById('panelMeta').innerHTML =
+    `<span class="sub-tag">r/${post.subreddit}</span>
+     <span class="domain-tag">${(post.domain||'').split('/')[0]}</span>
+     <span class="cred-score ${credClass(post.credibility_score)}">${post.credibility_score}</span>`;
+
+  document.getElementById('chatHistory').innerHTML = '';
+  document.getElementById('main').classList.add('panel-open');
+
+  // Auto-send initial research prompt
+  const templates = {
+    'Trading/Finance':        'Analyze this for my trading context. Mechanics, edge, when NOT to use it.',
+    'AI/Prompts/Automation':  "What's genuinely new here? Fit with my stack?",
+    'Longevity/Biohacking':   'Evidence quality and practical protocol assessment.',
+    'Kink/Creative/Selena':   'Expand this for Selena project applications.',
+    'Travel/Expat/LatAm':     'Verify this. Panama/Colombia nuance?',
+    'Language/Music/Culture': 'Cultural context and Latin American connections.',
+    'Productivity/Tools':     'Fit with my stack? Integration complexity?',
+  };
+  const prompt = templates[post.domain] || 'Research this and assess relevance.';
+  sendWithText(prompt);
+}
+
+function closePanel() {
+  document.getElementById('main').classList.remove('panel-open');
+  state.activePost  = null;
+  state.chatHistory = [];
+  document.querySelectorAll('.post-card').forEach(c => c.classList.remove('selected'));
+}
+
+// ── CHAT ───────────────────────────────────────────────────────────────────
+function handleKey(e) {
+  if (e.key === 'Enter' && !e.shiftKey) {
+    e.preventDefault();
+    sendMessage();
+  }
+}
+
+function autoResize(el) {
+  el.style.height = 'auto';
+  el.style.height = Math.min(el.scrollHeight, 100) + 'px';
+}
+
+function sendMessage() {
+  const input = document.getElementById('chatInput');
+  const text  = input.value.trim();
+  if (!text) return;
+  input.value = '';
+  input.style.height = 'auto';
+  sendWithText(text);
+}
+
+async function sendWithText(text) {
+  if (!state.activePost) return;
+
+  const btn = document.getElementById('sendBtn');
+  btn.disabled = true;
+
+  appendMsg('user', text);
+  state.chatHistory.push({ role: 'user', content: text });
+
+  const thinking = appendMsg('thinking', 'Researching...');
+
+  try {
+    const r = await fetch('/api/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        post: state.activePost,
+        messages: state.chatHistory,
+      })
+    });
+    const data = await r.json();
+    thinking.remove();
+
+    if (data.reply) {
+      appendMsg('assistant', data.reply);
+      state.chatHistory.push({ role: 'assistant', content: data.reply });
+    } else {
+      appendMsg('assistant', 'Error: ' + (data.error || 'Unknown error'));
+    }
+  } catch(e) {
+    thinking.remove();
+    appendMsg('assistant', 'Connection error: ' + e.message);
+  }
+
+  btn.disabled = false;
+}
+
+function appendMsg(role, text) {
+  const div = document.createElement('div');
+  div.className = `chat-msg ${role}`;
+  div.textContent = text;
+  const history = document.getElementById('chatHistory');
+  history.appendChild(div);
+  history.scrollTop = history.scrollHeight;
+  return div;
+}
+
+// ── SIGNALS ────────────────────────────────────────────────────────────────
+async function signal(id, sig, weight) {
+  await fetch('/api/signal', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ id, signal: sig, weight })
+  });
+  const card = document.getElementById('card-' + id);
+  if (card) {
+    card.classList.remove('kept','skipped');
+    card.classList.add(sig);
+  }
+  // Update in state
+  const post = state.posts.find(p => p.id === id);
+  if (post) post.preference_signal = sig;
+}
+
+// ── UTILS ──────────────────────────────────────────────────────────────────
+function escHtml(s) {
+  return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+init();
+</script>
+</body>
+</html>
